@@ -4,61 +4,38 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Wetlab Demo2Sim</title>
-<meta name="description" content="Close-up human wetlab clips reproduced as scripted robot episodes in MuJoCo and replayed in Genesis: human, MuJoCo and Genesis videos side by side, with every check disclosed.">
+<meta name="description" content="Human wetlab clips reproduced as scripted robot episodes in MuJoCo, side by side with the clip.">
 <link rel="stylesheet" href="style.css">
 <script src="app.js" defer></script>
 </head>
 <body>
-<header class="hero">
-  <h1>Wetlab Demo2Sim</h1>
-  <p class="tagline">Close-up human wetlab clips reproduced as scripted robot episodes in MuJoCo, then replayed in Genesis.</p>
-  <p class="page-links"><a href="#assets">Assets</a> · <a href="#tasks">Tasks</a> · <a href="#method">Method and disclosure</a> · <a href="#sources">Sources and licences</a></p>
-  <p class="summary" id="summary"></p>
-</header>
 <main>
-  <section id="assets" class="assets">
-    <h2>View by assets</h2>
-    <p class="hint">Click an object to see the tasks that use it. Thumbnails are rendered from the geometry the episodes actually used.</p>
+  <h1>Wetlab Demo2Sim</h1>
+  <p class="lede">Close-up human wetlab clips reproduced as scripted robot episodes in MuJoCo.</p>
+  <p class="page-links"><a href="https://changhaowang.github.io/human_bench/" target="_blank" rel="noopener">Layout after human_bench</a></p>
+
+  <section class="assets">
+    <h2 class="section-title">View by assets</h2>
+    <p class="hint">Click an object to see the tasks that use it.</p>
     <div id="asset-grid" class="asset-grid"></div>
   </section>
 
-  <section id="tasks" class="tasks">
-    <h2>View by tasks</h2>
-    <p class="hint">Filter by embodiment or skill. Click a task to compare the human clip, the MuJoCo episode (two cameras) and the Genesis replay side by side.</p>
-    <div id="filters" class="filters" aria-label="Task filters"></div>
-    <div id="grid" class="grid"></div>
-  </section>
+  <h2 class="section-title" id="tasks">View by tasks</h2>
+  <div id="filters" class="filters" aria-label="Task categories"></div>
+  <p class="hint">Click a task to compare the human clip and the MuJoCo episode from two cameras.</p>
+  <div id="grid" class="grid"></div>
 
-  <section id="method" class="prose">
-    <h2>Method and disclosure</h2>
-    <p>Each task starts from one human clip. Its steps are annotated from frames, then a rigid-body scene is designed in MuJoCo from Opentrons labware definitions and parametric tools, and a scripted episode (velocity IK on a UR5e, calibrated width commands for a Robotiq 2F-85) reproduces the clip's object motion and task events. The embodiment, fixtures and plunger actuation are <em>adapted</em>, and every simplification is listed under the task's "Adaptation". Liquid is never simulated and no volumetric claim is made.</p>
-    <p>Every check is computed from simulator state (privileged information: poses, contacts, interpenetration) and reported as-is, failures included. A task passes only when every check passes, including interpenetration under 1 mm at every control tick, no robot self-contact, joints inside their ranges and end-effector tracking under 10 mm. Cameras are framed automatically so every end effector stays in view for the whole episode.</p>
-    <p>The Genesis video replays the exact per-tick commands of the MuJoCo episode in a second simulator from the same exported scene and initial state. Constraint switches (tip seating, cap thread) are emulated with run-time welds and joint limits; the divergence table under each task shows how far the tracked bodies drift between simulators. Friction grasps transfer poorly without Genesis-specific contact tuning, and that is shown rather than hidden.</p>
-  </section>
+  <dialog id="detail" aria-labelledby="detail-title">
+    <div class="bar"><div><h2 id="detail-title"></h2><p class="desc" id="detail-desc"></p></div><button id="close-detail" class="close" type="button" aria-label="Close">×</button></div>
+    <div id="comparison" class="comparison"></div>
+    <div class="playback"><button id="play-all" type="button">Play all</button><button id="restart-all" type="button">Restart</button></div>
+    <details id="detail-more"><summary>Details: goal, adaptation, checks, provenance</summary><div id="detail-body"></div></details>
+  </dialog>
 
-  <section id="sources" class="prose">
-    <h2>Sources and licences</h2>
-    <p>Human clips are shown under their own licences, listed per task with URL, revision and checksum: LabOS (licence unstated by the dataset), LSV (CC-BY-NC-4.0) and CyberOrigin (MIT). They are shown for research comparison only. Robot models: MuJoCo Menagerie (UR5e BSD-3-Clause, Robotiq 2F-85 BSD-2-Clause). Labware geometry: Opentrons labware definitions (Apache-2.0). Second simulator: Genesis. Page layout after <a href="https://changhaowang.github.io/human_bench/" rel="noopener" target="_blank">human_bench</a>.</p>
-  </section>
+  <footer>
+    <p>Scripted episodes, one per task: object motion and task events follow the clip; the embodiment, fixtures and plunger actuation are adapted and listed under each task. Checks are computed from simulator state and shown as measured. No liquid is simulated.</p>
+    <p>Human clips are shown under their own licences (LabOS, LSV CC-BY-NC-4.0, CyberOrigin MIT) for research comparison. Robot models: MuJoCo Menagerie (UR5e, Robotiq 2F-85, Wonik Allegro). Labware: Opentrons definitions (Apache-2.0). Hand synergies: EigenDexplore (MIT).</p>
+  </footer>
 </main>
-
-<dialog id="detail" aria-labelledby="detail-title">
-  <div class="bar">
-    <div><h2 id="detail-title"></h2><p id="detail-meta" class="meta"></p></div>
-    <button id="close-detail" class="close" type="button" aria-label="Close">×</button>
-  </div>
-  <div id="comparison" class="comparison"></div>
-  <div class="playback-controls">
-    <button id="play-all" type="button">Play all</button>
-    <button id="pause-all" type="button">Pause</button>
-    <button id="restart-all" type="button">Restart</button>
-    <label>Speed <select id="speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label>
-  </div>
-  <div id="detail-body" class="detail-body"></div>
-</dialog>
-
-<footer>
-  <p>Scripted episodes, one per task; nothing here is a learned policy or a measured reproduction of the human's trajectory. Numbers come from simulator state.</p>
-</footer>
 </body>
 </html>
