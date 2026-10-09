@@ -1,0 +1,3691 @@
+{
+ "tasks": [
+  {
+   "id": "bottle-to-tube",
+   "title": "Pipette from stand, fit a tip, draw from a bottle, dispense into a tube",
+   "description": "tool pickup / insertion / deep and shallow vessels / sequence",
+   "goal": "Lift the pipette off its stand, press on a tip, draw from the open bottle, dispense into the open rack tube, eject the tip and hang the pipette back.",
+   "adaptation": "Single open-slot stand; pipette held by pad friction (no weld); tip seating is a weld that engages only inside the bore; the destination tube stands open in the rack instead of being held; actuated plunger; no liquid.",
+   "notes": [],
+   "human": {
+    "source": "LabOS LSV benchmark, DJI third-person clip DJI_U11 'Adding H2O into 1.5mL EP tube' (640 px mirror)",
+    "url": "https://huggingface.co/datasets/cong-lab/lsv/resolve/main/videos640/DJI_U11.mp4",
+    "dataset": "cong-lab/lsv",
+    "revision": "91eaf452d8ff2eeb1d5767d4198d1f6a965183c5",
+    "license": "CC-BY-NC-4.0 (research use only)",
+    "local_path": "human_videos/lsv_clips/DJI_U11.mp4",
+    "sha256": "127b07c5bfdc1fbda4be7b64bcf404d7e0e8810c5fdb4e26b8d3bc2785e3c490",
+    "resolution": [
+     854,
+     640
+    ],
+    "fps": 29.97,
+    "duration_s": 15.6,
+    "camera": "fixed third-person, bench level",
+    "trim_s": [
+     0.0,
+     15.6
+    ],
+    "phases_inferred_from_frames": [
+     {
+      "t": [
+       0.0,
+       2.0
+      ],
+      "phase": "take the pipette and fit a tip from the pink tip box"
+     },
+     {
+      "t": [
+       2.0,
+       6.0
+      ],
+      "phase": "aspirate water from the open bottle on the left"
+     },
+     {
+      "t": [
+       6.0,
+       11.0
+      ],
+      "phase": "dispense into a 1.5 mL tube held open in the green rack"
+     },
+     {
+      "t": [
+       11.0,
+       15.6
+      ],
+      "phase": "eject the tip and set the pipette down"
+     }
+    ],
+    "notes": "Phase times read off a 24-frame contact sheet. All four phases are reproduced, including taking the pipette and fitting the tip."
+   },
+   "robot": "UR5e + Robotiq 2F-85 (MuJoCo Menagerie)",
+   "end_effector": "2f85",
+   "hand": null,
+   "slim_tips": false,
+   "cameras": {
+    "overview": {
+     "eye": [
+      0.5007,
+      0.9979,
+      0.5172
+     ],
+     "aim": [
+      0.0172,
+      0.3935,
+      0.2754
+     ],
+     "fovy": 45.0
+    },
+    "closeup": {
+     "eye": [
+      -0.3308,
+      1.2884,
+      0.524
+     ],
+     "aim": [
+      0.0172,
+      0.3935,
+      0.2754
+     ],
+     "fovy": 45.0
+    }
+   },
+   "tags": [
+    "tool pickup",
+    "insertion",
+    "deep and shallow vessels",
+    "sequence"
+   ],
+   "assets": [
+    "bottle",
+    "pipette",
+    "stand",
+    "tip",
+    "tiprack",
+    "tube",
+    "tuberack",
+    "waste_cup"
+   ],
+   "arms": 1,
+   "key": "bottle-to-tube",
+   "embodiment": "one arm, parallel jaw",
+   "run_id": "2026-10-09T144029_bottle-to-tube_main-c7c7819",
+   "code": "main-c7c7819",
+   "mode": "dynamic",
+   "sim_seconds": 32.5,
+   "max_tcp_error_m": 0.00417,
+   "max_penetration_m": 0.000368,
+   "success": true,
+   "checks": [
+    {
+     "name": "pipette_held_by_pads",
+     "passed": true,
+     "measured": {
+      "fraction_in_contact": 1.0
+     },
+     "tolerance": {
+      "min": 0.95
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_seated_on_nozzle",
+     "passed": true,
+     "measured": {
+      "dxy_m": 0.00026,
+      "dz_m": 0.00021
+     },
+     "tolerance": {
+      "xy_m": 0.0015,
+      "z_m": 0.002
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_inside_bottle_during_aspirate",
+     "passed": true,
+     "measured": {
+      "max_xy_m": 0.00073,
+      "depth_m": [
+       0.03569,
+       0.03689
+      ]
+     },
+     "tolerance": {
+      "xy_m": 0.026,
+      "depth_m": [
+       0.0,
+       0.1
+      ]
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_inside_tube_B3_during_dispense",
+     "passed": true,
+     "measured": {
+      "max_xy_m": 0.00089,
+      "depth_m": [
+       0.01162,
+       0.01253
+      ]
+     },
+     "tolerance": {
+      "xy_m": 0.0035,
+      "depth_m": [
+       0.0,
+       0.039
+      ]
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_ejected_into_waste",
+     "passed": true,
+     "measured": {
+      "xy_m": 0.00072,
+      "z_below_rim_m": 0.08679
+     },
+     "tolerance": {
+      "xy_m": 0.04,
+      "z_below_rim_m": "> 0"
+     },
+     "privileged": true
+    },
+    {
+     "name": "pipette_returned_to_stand",
+     "passed": true,
+     "measured": {
+      "xy_m": 0.00023,
+      "dz_m": 0.0
+     },
+     "tolerance": {
+      "xy_m": 0.004,
+      "z_m": 0.004
+     },
+     "privileged": true
+    },
+    {
+     "name": "no_unintended_contacts",
+     "passed": true,
+     "measured": {
+      "arm": [],
+      "gripper": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "max_penetration",
+     "passed": true,
+     "measured": {
+      "max_m": 0.000368,
+      "phase": "approach_stand",
+      "pairs": {}
+     },
+     "tolerance": {
+      "max_m": 0.001
+     },
+     "privileged": true
+    },
+    {
+     "name": "tcp_tracking",
+     "passed": true,
+     "measured": {
+      "max_m": 0.00417
+     },
+     "tolerance": {
+      "max_m": 0.01
+     },
+     "privileged": false
+    },
+    {
+     "name": "no_robot_self_contact",
+     "passed": true,
+     "measured": {
+      "pairs": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "arm_joints_within_limits",
+     "passed": true,
+     "measured": {
+      "max_excursion_rad": 0.0
+     },
+     "tolerance": {
+      "max_rad": 0.0
+     },
+     "privileged": false
+    }
+   ],
+   "human_video": "media/bottle-to-tube/human.mp4",
+   "robot_video": "media/bottle-to-tube/overview.mp4",
+   "closeup_video": "media/bottle-to-tube/closeup.mp4",
+   "genesis_video": "media/bottle-to-tube/genesis_overview.mp4",
+   "robot_poster": "media/bottle-to-tube/poster.jpg",
+   "review_sheet": null,
+   "sim2sim": {
+    "task": "bottle-to-tube",
+    "simulator": "genesis 1.4.3",
+    "gripper_kp": 20.0,
+    "substeps": 1,
+    "ticks_replayed": 1625,
+    "ticks_total": 1625,
+    "fraction_replayed": 1.0,
+    "emulated_equalities": [
+     {
+      "body1": "pipette",
+      "body2": "tip",
+      "index": 3,
+      "name": "tip_weld",
+      "kind": "weld"
+     }
+    ],
+    "camera": {
+     "eye": [
+      0.5007,
+      0.9979,
+      0.5172
+     ],
+     "aim": [
+      0.0172,
+      0.3935,
+      0.2754
+     ],
+     "fovy": 45.0
+    },
+    "tracked_bodies": [
+     "pipette",
+     "tip"
+    ],
+    "final_divergence_m": {
+     "pipette": 0.16691,
+     "tip": 0.06816
+    },
+    "max_divergence_m": {
+     "pipette": 0.18344,
+     "tip": 0.06951
+    },
+    "max_penetration_m": 0.010989,
+    "frames": 976
+   }
+  },
+  {
+   "id": "cassette-into-base",
+   "title": "Seat a gel cassette in its base",
+   "description": "flat object pickup / insertion between rails",
+   "goal": "Pick the cassette up and seat it between the rails of the base.",
+   "adaptation": "Cassette and base are a plain plate and a ledged, railed block (no electrodes or latch); the plate starts on a low pedestal so the jaw can reach under its ends; one arm instead of two hands; gripped across its 70 mm length.",
+   "notes": [],
+   "human": {
+    "source": "LabOS LSV benchmark, XMglass egocentric clip XM_13 (640 px mirror), step 'Place the Invitrogen E-gel cassette into the E-gel power base'",
+    "url": "https://huggingface.co/datasets/cong-lab/lsv/resolve/main/videos640/XM_13.mp4",
+    "dataset": "cong-lab/lsv",
+    "revision": "91eaf452d8ff2eeb1d5767d4198d1f6a965183c5",
+    "license": "CC-BY-NC-4.0 (research use only)",
+    "local_path": "human_videos/lsv_clips/XM_13.mp4",
+    "sha256": "5baef263bb21c55a37a6446f3075f202542bdacee03362ece90176e5b65b7cc3",
+    "resolution": [
+     854,
+     640
+    ],
+    "fps": 30.0,
+    "duration_s": 30.0,
+    "camera": "egocentric smart glasses, moving",
+    "trim_s": [
+     23.0,
+     30.0
+    ],
+    "phases_inferred_from_frames": [
+     {
+      "t": [
+       23.0,
+       25.5
+      ],
+      "phase": "set the pipette down and pick the gel cassette up from the bench"
+     },
+     {
+      "t": [
+       25.5,
+       28.0
+      ],
+      "phase": "carry the cassette to the power base"
+     },
+     {
+      "t": [
+       28.0,
+       30.0
+      ],
+      "phase": "seat the cassette in the base with both hands"
+     }
+    ],
+    "notes": "Window from the per-step annotation; the cassette and base are modelled as a flat plate and a slotted holder (no electrodes)."
+   },
+   "robot": "UR5e + Robotiq 2F-85 (MuJoCo Menagerie)",
+   "end_effector": "2f85",
+   "hand": null,
+   "slim_tips": false,
+   "cameras": {
+    "overview": {
+     "eye": [
+      0.4317,
+      1.0806,
+      0.5067
+     ],
+     "aim": [
+      -0.06,
+      0.466,
+      0.2609
+     ],
+     "fovy": 45.0
+    },
+    "closeup": {
+     "eye": [
+      -0.3266,
+      1.1516,
+      0.4513
+     ],
+     "aim": [
+      -0.06,
+      0.466,
+      0.2609
+     ],
+     "fovy": 45.0
+    }
+   },
+   "tags": [
+    "flat object pickup",
+    "insertion between rails"
+   ],
+   "assets": [
+    "cassette",
+    "cassette_base"
+   ],
+   "arms": 1,
+   "key": "cassette-into-base",
+   "embodiment": "one arm, parallel jaw",
+   "run_id": "2026-10-09T144315_cassette-into-base_main-c7c7819",
+   "code": "main-c7c7819",
+   "mode": "dynamic",
+   "sim_seconds": 12.7,
+   "max_tcp_error_m": 0.00175,
+   "max_penetration_m": 3.7e-05,
+   "success": true,
+   "checks": [
+    {
+     "name": "cassette_lifted",
+     "passed": true,
+     "measured": {
+      "rise_m": 0.10066
+     },
+     "tolerance": {
+      "min_m": 0.05
+     },
+     "privileged": true
+    },
+    {
+     "name": "cassette_held_by_pads",
+     "passed": true,
+     "measured": {
+      "fraction_in_contact": 1.0
+     },
+     "tolerance": {
+      "min": 0.95
+     },
+     "privileged": true
+    },
+    {
+     "name": "cassette_seated_in_slot",
+     "passed": true,
+     "measured": {
+      "xy_m": 0.0003,
+      "dz_m": 0.0
+     },
+     "tolerance": {
+      "xy_m": 0.002,
+      "z_m": 0.002
+     },
+     "privileged": true
+    },
+    {
+     "name": "no_unintended_contacts",
+     "passed": true,
+     "measured": {
+      "arm": [],
+      "gripper": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "max_penetration",
+     "passed": true,
+     "measured": {
+      "max_m": 3.7e-05,
+      "phase": "carry",
+      "pairs": {}
+     },
+     "tolerance": {
+      "max_m": 0.001
+     },
+     "privileged": true
+    },
+    {
+     "name": "tcp_tracking",
+     "passed": true,
+     "measured": {
+      "max_m": 0.00175
+     },
+     "tolerance": {
+      "max_m": 0.01
+     },
+     "privileged": false
+    },
+    {
+     "name": "no_robot_self_contact",
+     "passed": true,
+     "measured": {
+      "pairs": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "arm_joints_within_limits",
+     "passed": true,
+     "measured": {
+      "max_excursion_rad": 0.0
+     },
+     "tolerance": {
+      "max_rad": 0.0
+     },
+     "privileged": false
+    }
+   ],
+   "human_video": "media/cassette-into-base/human.mp4",
+   "robot_video": "media/cassette-into-base/overview.mp4",
+   "closeup_video": "media/cassette-into-base/closeup.mp4",
+   "genesis_video": "media/cassette-into-base/genesis_overview.mp4",
+   "robot_poster": "media/cassette-into-base/poster.jpg",
+   "review_sheet": null,
+   "sim2sim": {
+    "task": "cassette-into-base",
+    "simulator": "genesis 1.4.3",
+    "gripper_kp": 20.0,
+    "substeps": 1,
+    "ticks_replayed": 635,
+    "ticks_total": 635,
+    "fraction_replayed": 1.0,
+    "emulated_equalities": [],
+    "camera": {
+     "eye": [
+      0.4317,
+      1.0806,
+      0.5067
+     ],
+     "aim": [
+      -0.06,
+      0.466,
+      0.2609
+     ],
+     "fovy": 45.0
+    },
+    "tracked_bodies": [
+     "cassette"
+    ],
+    "final_divergence_m": {
+     "cassette": 0.32029
+    },
+    "max_divergence_m": {
+     "cassette": 0.33752
+    },
+    "max_penetration_m": 6.2e-05,
+    "frames": 382
+   }
+  },
+  {
+   "id": "pipette-dial-bimanual",
+   "title": "Set the pipette volume dial with two arms",
+   "description": "bimanual / tool handling / knob turning",
+   "goal": "One arm lifts the pipette off its stand and holds it up; the other grips the volume dial, turns it three quarters of a turn and lets go; the pipette is hung back.",
+   "adaptation": "Two UR5e arms replace two hands; the dial is the top button on a hinge with light damping (no detents or volume readout); a 270 degree turn stands in for the clip's repeated twists; single-slot stand.",
+   "notes": [],
+   "human": {
+    "source": "CyberOrigin 'pipette' human demonstration with motion capture",
+    "url": "https://huggingface.co/datasets/cyberorigin/pipette/resolve/main/Video/video.mp4",
+    "dataset": "cyberorigin/pipette",
+    "revision": "727bbdd2f2b1fc3bc9f8a1c77c0a8a4ee6062c4b",
+    "license": "MIT",
+    "local_path": "human_videos/cyberorigin_pipette/video.mp4",
+    "sha256": "ccb1ef4d825f1bba9e914b496bf815c03b7366dc307133a661437b96b85592d0",
+    "resolution": [
+     1280,
+     800
+    ],
+    "fps": 30.0,
+    "duration_s": 27.1,
+    "camera": "head-mounted, moving",
+    "trim_s": [
+     3.0,
+     23.0
+    ],
+    "phases_inferred_from_frames": [
+     {
+      "t": [
+       3.5,
+       6.0
+      ],
+      "phase": "take the pipette off the carousel stand with the right hand"
+     },
+     {
+      "t": [
+       6.0,
+       10.0
+      ],
+      "phase": "bring it in front; the left hand reaches for the top button (volume dial)"
+     },
+     {
+      "t": [
+       10.0,
+       20.0
+      ],
+      "phase": "left hand twists the dial repeatedly while the right hand holds the pipette"
+     },
+     {
+      "t": [
+       20.0,
+       23.0
+      ],
+      "phase": "lower the pipette towards the stand"
+     }
+    ],
+    "notes": "Same clip as pipette-from-stand, used for its middle part: the two-handed dial adjustment. The repository README is empty; content read off frames."
+   },
+   "robot": "2x UR5e + Robotiq 2F-85 (MuJoCo Menagerie)",
+   "end_effector": "2f85",
+   "hand": null,
+   "slim_tips": false,
+   "cameras": {
+    "overview": {
+     "eye": [
+      0.6569,
+      1.0948,
+      0.6102
+     ],
+     "aim": [
+      0.141,
+      0.45,
+      0.3523
+     ],
+     "fovy": 45.0
+    },
+    "closeup": {
+     "eye": [
+      -0.1291,
+      1.1446,
+      0.5452
+     ],
+     "aim": [
+      0.141,
+      0.45,
+      0.3523
+     ],
+     "fovy": 45.0
+    }
+   },
+   "tags": [
+    "bimanual",
+    "tool handling",
+    "knob turning"
+   ],
+   "assets": [
+    "pipette",
+    "stand"
+   ],
+   "arms": 2,
+   "key": "pipette-dial-bimanual",
+   "embodiment": "two arms, parallel jaw",
+   "run_id": "2026-10-09T144318_pipette-dial-bimanual_main-c7c7819",
+   "code": "main-c7c7819",
+   "mode": "dynamic",
+   "sim_seconds": 31.4,
+   "max_tcp_error_m": 0.00589,
+   "max_penetration_m": 4.8e-05,
+   "success": true,
+   "checks": [
+    {
+     "name": "dial_turned",
+     "passed": true,
+     "measured": {
+      "dial_rad": -4.7313
+     },
+     "tolerance": {
+      "min_rad": 4.363323129985824
+     },
+     "privileged": true
+    },
+    {
+     "name": "dial_held_by_turning_jaw",
+     "passed": true,
+     "measured": {
+      "fraction": 1.0
+     },
+     "tolerance": {
+      "min": 0.95
+     },
+     "privileged": true
+    },
+    {
+     "name": "pipette_held_by_holding_jaw",
+     "passed": true,
+     "measured": {
+      "fraction": 1.0
+     },
+     "tolerance": {
+      "min": 0.95
+     },
+     "privileged": true
+    },
+    {
+     "name": "pipette_lifted_from_stand",
+     "passed": true,
+     "measured": {
+      "rise_m": 0.06039
+     },
+     "tolerance": {
+      "min_m": 0.03
+     },
+     "privileged": true
+    },
+    {
+     "name": "pipette_returned_to_stand",
+     "passed": true,
+     "measured": {
+      "xy_m": 0.00027,
+      "dz_m": 0.0
+     },
+     "tolerance": {
+      "xy_m": 0.004,
+      "z_m": 0.004
+     },
+     "privileged": true
+    },
+    {
+     "name": "no_unintended_contacts",
+     "passed": true,
+     "measured": {
+      "arm": [],
+      "gripper": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "max_penetration",
+     "passed": true,
+     "measured": {
+      "max_m": 4.8e-05,
+      "phase": "dial_release",
+      "pairs": {}
+     },
+     "tolerance": {
+      "max_m": 0.001
+     },
+     "privileged": true
+    },
+    {
+     "name": "tcp_tracking",
+     "passed": true,
+     "measured": {
+      "max_m": 0.00589
+     },
+     "tolerance": {
+      "max_m": 0.01
+     },
+     "privileged": false
+    },
+    {
+     "name": "no_robot_self_contact",
+     "passed": true,
+     "measured": {
+      "pairs": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "arm_joints_within_limits",
+     "passed": true,
+     "measured": {
+      "max_excursion_rad": 0.0
+     },
+     "tolerance": {
+      "max_rad": 0.0
+     },
+     "privileged": false
+    }
+   ],
+   "human_video": "media/pipette-dial-bimanual/human.mp4",
+   "robot_video": "media/pipette-dial-bimanual/overview.mp4",
+   "closeup_video": "media/pipette-dial-bimanual/closeup.mp4",
+   "genesis_video": "media/pipette-dial-bimanual/genesis_overview.mp4",
+   "robot_poster": "media/pipette-dial-bimanual/poster.jpg",
+   "review_sheet": null,
+   "sim2sim": {
+    "task": "pipette-dial-bimanual",
+    "simulator": "genesis 1.4.3",
+    "gripper_kp": 20.0,
+    "substeps": 1,
+    "ticks_replayed": 1570,
+    "ticks_total": 1570,
+    "fraction_replayed": 1.0,
+    "emulated_equalities": [],
+    "camera": {
+     "eye": [
+      0.6569,
+      1.0948,
+      0.6102
+     ],
+     "aim": [
+      0.141,
+      0.45,
+      0.3523
+     ],
+     "fovy": 45.0
+    },
+    "tracked_bodies": [
+     "pipette",
+     "pipette/plunger"
+    ],
+    "final_divergence_m": {
+     "pipette": 0.00027,
+     "pipette/plunger": 0.00027
+    },
+    "max_divergence_m": {
+     "pipette": 0.10761,
+     "pipette/plunger": 0.10847
+    },
+    "max_penetration_m": 0.0,
+    "frames": 943
+   }
+  },
+  {
+   "id": "pipette-from-stand",
+   "title": "Take the pipette off its stand and hang it back",
+   "description": "grasping a hanging tool / placing into a fixture",
+   "goal": "Lift the pipette out of the stand slot, bring it in front of the robot, and hang it back on the stand.",
+   "adaptation": "The carousel stand becomes a single open U-slot facing the robot; the human's two-handed volume-dial adjustment is replaced by a 2 s hold (no dial is set); the pipette is held by pad friction, no weld.",
+   "notes": [],
+   "human": {
+    "source": "CyberOrigin 'pipette' human demonstration with motion capture",
+    "url": "https://huggingface.co/datasets/cyberorigin/pipette/resolve/main/Video/video.mp4",
+    "dataset": "cyberorigin/pipette",
+    "revision": "727bbdd2f2b1fc3bc9f8a1c77c0a8a4ee6062c4b",
+    "license": "MIT",
+    "local_path": "human_videos/cyberorigin_pipette/video.mp4",
+    "sha256": "ccb1ef4d825f1bba9e914b496bf815c03b7366dc307133a661437b96b85592d0",
+    "resolution": [
+     1280,
+     800
+    ],
+    "fps": 30.0,
+    "duration_s": 27.1,
+    "camera": "head-mounted, moving",
+    "trim_s": [
+     0.0,
+     27.1
+    ],
+    "phases_inferred_from_frames": [
+     {
+      "t": [
+       3.5,
+       6.0
+      ],
+      "phase": "take the pipette off the carousel stand with the right hand"
+     },
+     {
+      "t": [
+       6.0,
+       22.0
+      ],
+      "phase": "hold the pipette and turn the volume dial with the left hand"
+     },
+     {
+      "t": [
+       22.0,
+       27.1
+      ],
+      "phase": "hang the pipette back on the stand"
+     }
+    ],
+    "notes": "The repository README is empty; the clip content was read off frames. The MoCap CSV (full-body joints) is downloaded beside the clip but not used."
+   },
+   "robot": "UR5e + Robotiq 2F-85 (MuJoCo Menagerie)",
+   "end_effector": "2f85",
+   "hand": null,
+   "slim_tips": false,
+   "cameras": {
+    "overview": {
+     "eye": [
+      0.4676,
+      0.9243,
+      0.5303
+     ],
+     "aim": [
+      0.043,
+      0.3935,
+      0.318
+     ],
+     "fovy": 45.0
+    },
+    "closeup": {
+     "eye": [
+      -0.1819,
+      0.9719,
+      0.4787
+     ],
+     "aim": [
+      0.043,
+      0.3935,
+      0.318
+     ],
+     "fovy": 45.0
+    }
+   },
+   "tags": [
+    "grasping a hanging tool",
+    "placing into a fixture"
+   ],
+   "assets": [
+    "pipette",
+    "stand"
+   ],
+   "arms": 1,
+   "key": "pipette-from-stand",
+   "embodiment": "one arm, parallel jaw",
+   "run_id": "2026-10-09T143819_pipette-from-stand_main-c7c7819",
+   "code": "main-c7c7819",
+   "mode": "dynamic",
+   "sim_seconds": 19.7,
+   "max_tcp_error_m": 0.00239,
+   "max_penetration_m": 1.8e-05,
+   "success": true,
+   "checks": [
+    {
+     "name": "pipette_lifted",
+     "passed": true,
+     "measured": {
+      "min_rise_m": 0.04428
+     },
+     "tolerance": {
+      "min_m": 0.03
+     },
+     "privileged": true
+    },
+    {
+     "name": "pipette_held_by_pads",
+     "passed": true,
+     "measured": {
+      "fraction_in_contact": 1.0
+     },
+     "tolerance": {
+      "min": 0.95
+     },
+     "privileged": true
+    },
+    {
+     "name": "pipette_returned_to_stand",
+     "passed": true,
+     "measured": {
+      "xy_m": 0.00016,
+      "dz_m": 0.0
+     },
+     "tolerance": {
+      "xy_m": 0.004,
+      "z_m": 0.004
+     },
+     "privileged": true
+    },
+    {
+     "name": "no_unintended_contacts",
+     "passed": true,
+     "measured": {
+      "arm": [],
+      "gripper": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "max_penetration",
+     "passed": true,
+     "measured": {
+      "max_m": 1.8e-05,
+      "phase": "grasp",
+      "pairs": {}
+     },
+     "tolerance": {
+      "max_m": 0.001
+     },
+     "privileged": true
+    },
+    {
+     "name": "tcp_tracking",
+     "passed": true,
+     "measured": {
+      "max_m": 0.00239
+     },
+     "tolerance": {
+      "max_m": 0.01
+     },
+     "privileged": false
+    },
+    {
+     "name": "no_robot_self_contact",
+     "passed": true,
+     "measured": {
+      "pairs": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "arm_joints_within_limits",
+     "passed": true,
+     "measured": {
+      "max_excursion_rad": 0.0
+     },
+     "tolerance": {
+      "max_rad": 0.0
+     },
+     "privileged": false
+    }
+   ],
+   "human_video": "media/pipette-from-stand/human.mp4",
+   "robot_video": "media/pipette-from-stand/overview.mp4",
+   "closeup_video": "media/pipette-from-stand/closeup.mp4",
+   "genesis_video": "media/pipette-from-stand/genesis_overview.mp4",
+   "robot_poster": "media/pipette-from-stand/poster.jpg",
+   "review_sheet": null,
+   "sim2sim": {
+    "task": "pipette-from-stand",
+    "simulator": "genesis 1.4.3",
+    "gripper_kp": 20.0,
+    "substeps": 1,
+    "ticks_replayed": 985,
+    "ticks_total": 985,
+    "fraction_replayed": 1.0,
+    "emulated_equalities": [],
+    "camera": {
+     "eye": [
+      0.4676,
+      0.9243,
+      0.5303
+     ],
+     "aim": [
+      0.043,
+      0.3935,
+      0.318
+     ],
+     "fovy": 45.0
+    },
+    "tracked_bodies": [
+     "pipette"
+    ],
+    "final_divergence_m": {
+     "pipette": 0.15898
+    },
+    "max_divergence_m": {
+     "pipette": 0.18532
+    },
+    "max_penetration_m": 0.000603,
+    "frames": 592
+   }
+  },
+  {
+   "id": "pipette-full-cycle",
+   "title": "Pipette from stand, fit a tip, dispense, eject, hang back",
+   "description": "tool pickup and return / insertion and alignment / sequence",
+   "goal": "Lift the pipette out of its stand, press on a tip, dispense into an open rack tube, eject the tip into the waste cup and hang the pipette back.",
+   "adaptation": "Single open-slot stand; pipette held by pad friction (no weld); actuated plunger; tip seating is a weld that engages only if the nozzle is inside the bore; liquid is not simulated; the human's hand-held tip box is a fixed rack.",
+   "notes": [],
+   "human": {
+    "source": "LabOS real human pipetting (anonymized), front camera, first video file",
+    "url": "https://huggingface.co/datasets/labos-sim/real_human_pipetting_lerobot_anonymized/resolve/main/videos/observation.images.front/chunk-000/file-000.mp4",
+    "dataset": "labos-sim/real_human_pipetting_lerobot_anonymized",
+    "revision": "56972c40387541a7965ed6c14d58eeb38b8ca5d7",
+    "license": "not stated on the dataset card ('[More Information Needed]'); not redistributed here",
+    "local_path": "human_videos/labos_pipetting/front_file-000.mp4",
+    "sha256": "492ce49ae4970d4960b753ec3ce5ea2709eb6b29d545d463bbde9fae0e29cca6",
+    "resolution": [
+     1920,
+     1200
+    ],
+    "fps": 30.0,
+    "duration_s": 18.0,
+    "camera": "fixed overhead front camera",
+    "trim_s": [
+     0.0,
+     11.5
+    ],
+    "phases_inferred_from_frames": [
+     {
+      "t": [
+       0.0,
+       2.3
+      ],
+      "phase": "reach right and take the pipette off its stand"
+     },
+     {
+      "t": [
+       2.3,
+       4.7
+      ],
+      "phase": "press a tip on from the tip box"
+     },
+     {
+      "t": [
+       4.7,
+       7.8
+      ],
+      "phase": "dispense into a tube in the green rack"
+     },
+     {
+      "t": [
+       7.8,
+       11.0
+      ],
+      "phase": "eject the tip and hang the pipette back"
+     }
+    ],
+    "notes": "Phase times were read off a 24-frame contact sheet; the file holds several concatenated episodes, the first is used."
+   },
+   "robot": "UR5e + Robotiq 2F-85 (MuJoCo Menagerie)",
+   "end_effector": "2f85",
+   "hand": null,
+   "slim_tips": false,
+   "cameras": {
+    "overview": {
+     "eye": [
+      0.5007,
+      0.9979,
+      0.5172
+     ],
+     "aim": [
+      0.0172,
+      0.3935,
+      0.2754
+     ],
+     "fovy": 45.0
+    },
+    "closeup": {
+     "eye": [
+      -0.3308,
+      1.2884,
+      0.524
+     ],
+     "aim": [
+      0.0172,
+      0.3935,
+      0.2754
+     ],
+     "fovy": 45.0
+    }
+   },
+   "tags": [
+    "tool pickup and return",
+    "insertion and alignment",
+    "sequence"
+   ],
+   "assets": [
+    "pipette",
+    "stand",
+    "tip",
+    "tiprack",
+    "tube",
+    "tuberack",
+    "waste_cup"
+   ],
+   "arms": 1,
+   "key": "pipette-full-cycle",
+   "embodiment": "one arm, parallel jaw",
+   "run_id": "2026-10-09T144029_pipette-full-cycle_main-c7c7819",
+   "code": "main-c7c7819",
+   "mode": "dynamic",
+   "sim_seconds": 26.9,
+   "max_tcp_error_m": 0.00417,
+   "max_penetration_m": 0.000368,
+   "success": true,
+   "checks": [
+    {
+     "name": "pipette_held_by_pads",
+     "passed": true,
+     "measured": {
+      "fraction_in_contact": 1.0
+     },
+     "tolerance": {
+      "min": 0.95
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_seated_on_nozzle",
+     "passed": true,
+     "measured": {
+      "dxy_m": 0.00026,
+      "dz_m": 0.00021
+     },
+     "tolerance": {
+      "xy_m": 0.0015,
+      "z_m": 0.002
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_inside_tube_B2_during_dispense",
+     "passed": true,
+     "measured": {
+      "max_xy_m": 0.0009,
+      "depth_m": [
+       0.01164,
+       0.01258
+      ]
+     },
+     "tolerance": {
+      "xy_m": 0.0035,
+      "depth_m": [
+       0.0,
+       0.039
+      ]
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_ejected_into_waste",
+     "passed": true,
+     "measured": {
+      "xy_m": 0.00124,
+      "z_below_rim_m": 0.08678
+     },
+     "tolerance": {
+      "xy_m": 0.04,
+      "z_below_rim_m": "> 0"
+     },
+     "privileged": true
+    },
+    {
+     "name": "pipette_returned_to_stand",
+     "passed": true,
+     "measured": {
+      "xy_m": 0.00024,
+      "dz_m": 0.0
+     },
+     "tolerance": {
+      "xy_m": 0.004,
+      "z_m": 0.004
+     },
+     "privileged": true
+    },
+    {
+     "name": "no_unintended_contacts",
+     "passed": true,
+     "measured": {
+      "arm": [],
+      "gripper": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "max_penetration",
+     "passed": true,
+     "measured": {
+      "max_m": 0.000368,
+      "phase": "approach_stand",
+      "pairs": {}
+     },
+     "tolerance": {
+      "max_m": 0.001
+     },
+     "privileged": true
+    },
+    {
+     "name": "tcp_tracking",
+     "passed": true,
+     "measured": {
+      "max_m": 0.00417
+     },
+     "tolerance": {
+      "max_m": 0.01
+     },
+     "privileged": false
+    },
+    {
+     "name": "no_robot_self_contact",
+     "passed": true,
+     "measured": {
+      "pairs": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "arm_joints_within_limits",
+     "passed": true,
+     "measured": {
+      "max_excursion_rad": 0.0
+     },
+     "tolerance": {
+      "max_rad": 0.0
+     },
+     "privileged": false
+    }
+   ],
+   "human_video": "media/pipette-full-cycle/human.mp4",
+   "robot_video": "media/pipette-full-cycle/overview.mp4",
+   "closeup_video": "media/pipette-full-cycle/closeup.mp4",
+   "genesis_video": "media/pipette-full-cycle/genesis_overview.mp4",
+   "robot_poster": "media/pipette-full-cycle/poster.jpg",
+   "review_sheet": null,
+   "sim2sim": {
+    "task": "pipette-full-cycle",
+    "simulator": "genesis 1.4.3",
+    "gripper_kp": 20.0,
+    "substeps": 1,
+    "ticks_replayed": 1345,
+    "ticks_total": 1345,
+    "fraction_replayed": 1.0,
+    "emulated_equalities": [
+     {
+      "body1": "pipette",
+      "body2": "tip",
+      "index": 3,
+      "name": "tip_weld",
+      "kind": "weld"
+     }
+    ],
+    "camera": {
+     "eye": [
+      0.5007,
+      0.9979,
+      0.5172
+     ],
+     "aim": [
+      0.0172,
+      0.3935,
+      0.2754
+     ],
+     "fovy": 45.0
+    },
+    "tracked_bodies": [
+     "pipette",
+     "tip"
+    ],
+    "final_divergence_m": {
+     "pipette": 0.16417,
+     "tip": 0.07583
+    },
+    "max_divergence_m": {
+     "pipette": 0.18384,
+     "tip": 0.07583
+    },
+    "max_penetration_m": 0.009059,
+    "frames": 808
+   }
+  },
+  {
+   "id": "pipette-tip-transfer",
+   "title": "Attach a tip, transfer between tubes, eject the tip",
+   "description": "tool use with a held instrument / insertion and alignment",
+   "goal": "Press a fresh tip onto the held pipette, aspirate from one open tube, dispense into another, and eject the tip into the waste cup.",
+   "adaptation": "Pipette is pre-clamped in the parallel jaw (weld); plunger is an actuated electronic pipette, not a thumb press; tip seating is a weld that engages only if the nozzle is inside the tip bore; decorative tips are static; liquid is not simulated (no volume claim).",
+   "notes": [],
+   "human": {
+    "source": "LabOS LSV benchmark, PMD split, correct clip 12",
+    "url": "https://huggingface.co/datasets/cong-lab/lsv/resolve/main/pmd/correct/pmd_correct_12.mp4",
+    "dataset": "cong-lab/lsv",
+    "revision": "91eaf452d8ff2eeb1d5767d4198d1f6a965183c5",
+    "license": "CC-BY-NC-4.0 (non-commercial research use only)",
+    "local_path": "human_videos/lsv_pmd/pmd_correct_12.mp4",
+    "sha256": "192f6bb3f7463e288818f23aa572084b1eaf02dbf90ef9e94c3a523c20e6990b",
+    "resolution": [
+     1920,
+     1080
+    ],
+    "fps": 29.99,
+    "duration_s": 10.7,
+    "camera": "egocentric (head-mounted), moving",
+    "trim_s": [
+     0.0,
+     10.7
+    ],
+    "phases_inferred_from_frames": [
+     {
+      "t": [
+       0.0,
+       2.3
+      ],
+      "phase": "press a tip onto the held pipette from the tip box"
+     },
+     {
+      "t": [
+       2.3,
+       5.5
+      ],
+      "phase": "move to the source tube and aspirate"
+     },
+     {
+      "t": [
+       5.5,
+       8.0
+      ],
+      "phase": "move to the destination and dispense"
+     },
+     {
+      "t": [
+       8.0,
+       10.7
+      ],
+      "phase": "eject the tip into the waste cup"
+     }
+    ],
+    "notes": "Phase times were read off a 24-frame contact sheet, not from annotations; the clip has no labels beyond 'correct'."
+   },
+   "robot": "UR5e + Robotiq 2F-85 (MuJoCo Menagerie)",
+   "end_effector": "2f85",
+   "hand": null,
+   "slim_tips": false,
+   "cameras": {
+    "overview": {
+     "eye": [
+      0.4949,
+      1.1218,
+      0.585
+     ],
+     "aim": [
+      -0.0528,
+      0.4372,
+      0.3111
+     ],
+     "fovy": 45.0
+    },
+    "closeup": {
+     "eye": [
+      -0.3883,
+      1.2999,
+      0.5508
+     ],
+     "aim": [
+      -0.0528,
+      0.4372,
+      0.3111
+     ],
+     "fovy": 45.0
+    }
+   },
+   "tags": [
+    "tool use with a held instrument",
+    "insertion and alignment"
+   ],
+   "assets": [
+    "pipette",
+    "tip",
+    "tiprack",
+    "tube",
+    "tuberack",
+    "waste_cup"
+   ],
+   "arms": 1,
+   "key": "pipette-tip-transfer",
+   "embodiment": "one arm, parallel jaw",
+   "run_id": "2026-10-09T143437_pipette-tip-transfer_main-c7c7819",
+   "code": "main-c7c7819",
+   "mode": "dynamic",
+   "sim_seconds": 21.6,
+   "max_tcp_error_m": 0.00203,
+   "max_penetration_m": 0.000368,
+   "success": true,
+   "checks": [
+    {
+     "name": "tip_seated_on_nozzle",
+     "passed": true,
+     "measured": {
+      "dxy_m": 0.00025,
+      "dz_m": -1e-05
+     },
+     "tolerance": {
+      "xy_m": 0.0015,
+      "z_m": 0.002
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_carried_after_lift",
+     "passed": true,
+     "measured": {
+      "bore_to_nozzle_m": 0.00713
+     },
+     "tolerance": {
+      "max_m": 0.00947
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_inside_tube_B2_during_aspirate",
+     "passed": true,
+     "measured": {
+      "max_xy_m": 0.00105,
+      "depth_m": [
+       0.01156,
+       0.0127
+      ]
+     },
+     "tolerance": {
+      "xy_m": 0.0035,
+      "depth_m": [
+       0.0,
+       0.039
+      ]
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_inside_tube_C5_during_dispense",
+     "passed": true,
+     "measured": {
+      "max_xy_m": 0.00064,
+      "depth_m": [
+       0.01155,
+       0.01252
+      ]
+     },
+     "tolerance": {
+      "xy_m": 0.0035,
+      "depth_m": [
+       0.0,
+       0.039
+      ]
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_ejected_into_waste",
+     "passed": true,
+     "measured": {
+      "xy_m": 0.01423,
+      "z_below_rim_m": 0.08635
+     },
+     "tolerance": {
+      "xy_m": 0.045,
+      "z_below_rim_m": "> 0"
+     },
+     "privileged": true
+    },
+    {
+     "name": "no_unintended_contacts",
+     "passed": true,
+     "measured": {
+      "arm": [],
+      "gripper": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "max_penetration",
+     "passed": true,
+     "measured": {
+      "max_m": 0.000368,
+      "phase": "approach_tip",
+      "pairs": {}
+     },
+     "tolerance": {
+      "max_m": 0.001
+     },
+     "privileged": true
+    },
+    {
+     "name": "tcp_tracking",
+     "passed": true,
+     "measured": {
+      "max_m": 0.00203
+     },
+     "tolerance": {
+      "max_m": 0.01
+     },
+     "privileged": false
+    },
+    {
+     "name": "no_robot_self_contact",
+     "passed": true,
+     "measured": {
+      "pairs": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "arm_joints_within_limits",
+     "passed": true,
+     "measured": {
+      "max_excursion_rad": 0.0
+     },
+     "tolerance": {
+      "max_rad": 0.0
+     },
+     "privileged": false
+    }
+   ],
+   "human_video": "media/pipette-tip-transfer/human.mp4",
+   "robot_video": "media/pipette-tip-transfer/overview.mp4",
+   "closeup_video": "media/pipette-tip-transfer/closeup.mp4",
+   "genesis_video": "media/pipette-tip-transfer/genesis_overview.mp4",
+   "robot_poster": "media/pipette-tip-transfer/poster.jpg",
+   "review_sheet": null,
+   "sim2sim": {
+    "task": "pipette-tip-transfer",
+    "simulator": "genesis 1.4.3",
+    "gripper_kp": 20.0,
+    "substeps": 1,
+    "ticks_replayed": 1080,
+    "ticks_total": 1080,
+    "fraction_replayed": 1.0,
+    "emulated_equalities": [
+     {
+      "body1": "pipette",
+      "body2": "tip",
+      "index": 4,
+      "name": "tip_weld",
+      "kind": "weld"
+     }
+    ],
+    "camera": {
+     "eye": [
+      0.4949,
+      1.1218,
+      0.585
+     ],
+     "aim": [
+      -0.0528,
+      0.4372,
+      0.3111
+     ],
+     "fovy": 45.0
+    },
+    "tracked_bodies": [
+     "pipette",
+     "tip"
+    ],
+    "final_divergence_m": {
+     "pipette": 0.0114,
+     "tip": 0.0645
+    },
+    "max_divergence_m": {
+     "pipette": 0.01565,
+     "tip": 0.06483
+    },
+    "max_penetration_m": 0.011573,
+    "frames": 649
+   }
+  },
+  {
+   "id": "pipette-tip-transfer",
+   "title": "Attach a tip, transfer between tubes, eject the tip",
+   "description": "tool use with a held instrument / insertion and alignment",
+   "goal": "Press a fresh tip onto the held pipette, aspirate from one open tube, dispense into another, and eject the tip into the waste cup.",
+   "adaptation": "Pipette is pre-clamped in the parallel jaw (weld); plunger is an actuated electronic pipette, not a thumb press; tip seating is a weld that engages only if the nozzle is inside the tip bore; decorative tips are static; liquid is not simulated (no volume claim). Allegro hand instead of the parallel jaw: the fingers open and close through pinch postures solved in EigenDexplore's human hand-motion subspace, grasps squeeze a few millimetres past the object, no fingertip plates; where a task fills a rack, only tubes at least two wells from the target are placed (the 24 mm fingertips cannot enter a dense rack); the tool is held between thumb and index.",
+   "notes": [],
+   "human": {
+    "source": "LabOS LSV benchmark, PMD split, correct clip 12",
+    "url": "https://huggingface.co/datasets/cong-lab/lsv/resolve/main/pmd/correct/pmd_correct_12.mp4",
+    "dataset": "cong-lab/lsv",
+    "revision": "91eaf452d8ff2eeb1d5767d4198d1f6a965183c5",
+    "license": "CC-BY-NC-4.0 (non-commercial research use only)",
+    "local_path": "human_videos/lsv_pmd/pmd_correct_12.mp4",
+    "sha256": "192f6bb3f7463e288818f23aa572084b1eaf02dbf90ef9e94c3a523c20e6990b",
+    "resolution": [
+     1920,
+     1080
+    ],
+    "fps": 29.99,
+    "duration_s": 10.7,
+    "camera": "egocentric (head-mounted), moving",
+    "trim_s": [
+     0.0,
+     10.7
+    ],
+    "phases_inferred_from_frames": [
+     {
+      "t": [
+       0.0,
+       2.3
+      ],
+      "phase": "press a tip onto the held pipette from the tip box"
+     },
+     {
+      "t": [
+       2.3,
+       5.5
+      ],
+      "phase": "move to the source tube and aspirate"
+     },
+     {
+      "t": [
+       5.5,
+       8.0
+      ],
+      "phase": "move to the destination and dispense"
+     },
+     {
+      "t": [
+       8.0,
+       10.7
+      ],
+      "phase": "eject the tip into the waste cup"
+     }
+    ],
+    "notes": "Phase times were read off a 24-frame contact sheet, not from annotations; the clip has no labels beyond 'correct'."
+   },
+   "robot": "UR5e + Wonik Allegro hand (MuJoCo Menagerie)",
+   "end_effector": "allegro",
+   "hand": {
+    "basis": "eigendexplore allegro PCA, rank 10",
+    "commit": "292693385afdfe054c6388d93513083235d50271",
+    "family_widths_m": [
+     0.0,
+     0.0083,
+     0.0167,
+     0.025,
+     0.0333,
+     0.0417,
+     0.05
+    ],
+    "closed_coefficients": [
+     1.0618,
+     0.151,
+     -0.289,
+     0.0748,
+     -0.0163,
+     -0.0812,
+     -0.0801,
+     -0.0256,
+     -0.1658,
+     0.0225
+    ],
+    "open_coefficients": [
+     0.7468,
+     -0.5299,
+     -0.1478,
+     -0.089,
+     -0.7075,
+     0.1565,
+     -0.3536,
+     0.3618,
+     0.0578,
+     0.7525
+    ],
+    "max_pinch_gap_m": 0.0485,
+    "pinch_point_palm_m": [
+     0.0891,
+     0.0235,
+     0.0166
+    ],
+    "closing_axis_palm": [
+     0.5761,
+     -0.0483,
+     0.8159
+    ],
+    "approach_tilt_deg": 45.0,
+    "kp": 10.0,
+    "torque_limit": 0.7
+   },
+   "slim_tips": false,
+   "cameras": {
+    "overview": {
+     "eye": [
+      0.608,
+      1.2632,
+      0.7065
+     ],
+     "aim": [
+      -0.0528,
+      0.4372,
+      0.3761
+     ],
+     "fovy": 45.0
+    },
+    "closeup": {
+     "eye": [
+      -0.4431,
+      1.441,
+      0.6549
+     ],
+     "aim": [
+      -0.0528,
+      0.4372,
+      0.3761
+     ],
+     "fovy": 45.0
+    }
+   },
+   "tags": [
+    "tool use with a held instrument",
+    "insertion and alignment"
+   ],
+   "assets": [
+    "pipette",
+    "tip",
+    "tiprack",
+    "tube",
+    "tuberack",
+    "waste_cup"
+   ],
+   "arms": 1,
+   "key": "pipette-tip-transfer@allegro",
+   "embodiment": "one arm, Allegro hand",
+   "run_id": "2026-10-09T153208_pipette-tip-transfer-allegro_main-8ea196b",
+   "code": "main-8ea196b",
+   "mode": "dynamic",
+   "sim_seconds": 21.6,
+   "max_tcp_error_m": 0.00208,
+   "max_penetration_m": 0.000368,
+   "success": true,
+   "checks": [
+    {
+     "name": "tip_seated_on_nozzle",
+     "passed": true,
+     "measured": {
+      "dxy_m": 0.00025,
+      "dz_m": -7e-05
+     },
+     "tolerance": {
+      "xy_m": 0.0015,
+      "z_m": 0.002
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_carried_after_lift",
+     "passed": true,
+     "measured": {
+      "bore_to_nozzle_m": 0.00722
+     },
+     "tolerance": {
+      "max_m": 0.00947
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_inside_tube_B2_during_aspirate",
+     "passed": true,
+     "measured": {
+      "max_xy_m": 0.00132,
+      "depth_m": [
+       0.01137,
+       0.01237
+      ]
+     },
+     "tolerance": {
+      "xy_m": 0.0035,
+      "depth_m": [
+       0.0,
+       0.039
+      ]
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_inside_tube_C5_during_dispense",
+     "passed": true,
+     "measured": {
+      "max_xy_m": 0.00109,
+      "depth_m": [
+       0.01131,
+       0.01202
+      ]
+     },
+     "tolerance": {
+      "xy_m": 0.0035,
+      "depth_m": [
+       0.0,
+       0.039
+      ]
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_ejected_into_waste",
+     "passed": true,
+     "measured": {
+      "xy_m": 0.01826,
+      "z_below_rim_m": 0.08618
+     },
+     "tolerance": {
+      "xy_m": 0.045,
+      "z_below_rim_m": "> 0"
+     },
+     "privileged": true
+    },
+    {
+     "name": "no_unintended_contacts",
+     "passed": true,
+     "measured": {
+      "arm": [],
+      "gripper": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "max_penetration",
+     "passed": true,
+     "measured": {
+      "max_m": 0.000368,
+      "phase": "approach_tip",
+      "pairs": {}
+     },
+     "tolerance": {
+      "max_m": 0.001
+     },
+     "privileged": true
+    },
+    {
+     "name": "tcp_tracking",
+     "passed": true,
+     "measured": {
+      "max_m": 0.00208
+     },
+     "tolerance": {
+      "max_m": 0.01
+     },
+     "privileged": false
+    },
+    {
+     "name": "no_robot_self_contact",
+     "passed": true,
+     "measured": {
+      "pairs": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "arm_joints_within_limits",
+     "passed": true,
+     "measured": {
+      "max_excursion_rad": 0.0
+     },
+     "tolerance": {
+      "max_rad": 0.0
+     },
+     "privileged": false
+    }
+   ],
+   "human_video": "media/pipette-tip-transfer-allegro/human.mp4",
+   "robot_video": "media/pipette-tip-transfer-allegro/overview.mp4",
+   "closeup_video": "media/pipette-tip-transfer-allegro/closeup.mp4",
+   "genesis_video": "media/pipette-tip-transfer-allegro/genesis_overview.mp4",
+   "robot_poster": "media/pipette-tip-transfer-allegro/poster.jpg",
+   "review_sheet": null,
+   "sim2sim": {
+    "task": "pipette-tip-transfer",
+    "simulator": "genesis 1.4.3",
+    "gripper_kp": 20.0,
+    "substeps": 1,
+    "ticks_replayed": 1080,
+    "ticks_total": 1080,
+    "fraction_replayed": 1.0,
+    "emulated_equalities": [
+     {
+      "body1": "pipette",
+      "body2": "tip",
+      "index": 1,
+      "name": "tip_weld",
+      "kind": "weld"
+     }
+    ],
+    "camera": {
+     "eye": [
+      0.608,
+      1.2632,
+      0.7065
+     ],
+     "aim": [
+      -0.0528,
+      0.4372,
+      0.3761
+     ],
+     "fovy": 45.0
+    },
+    "tracked_bodies": [
+     "pipette",
+     "tip"
+    ],
+    "final_divergence_m": {
+     "pipette": 0.01033,
+     "tip": 0.07141
+    },
+    "max_divergence_m": {
+     "pipette": 0.01448,
+     "tip": 0.0744
+    },
+    "max_penetration_m": 0.011337,
+    "frames": 649
+   }
+  },
+  {
+   "id": "serial-pcr-transfer",
+   "title": "Serial transfer along a PCR strip",
+   "description": "repeated insertion into small wells / sequential procedure",
+   "goal": "Aspirate from tube 1 and dispense into tube 2, then from tube 2 into tube 3.",
+   "adaptation": "The hand-held PCR strip is a 96-well plate fixed to the bench; pipette pre-clamped with its tip on; actuated plunger; no liquid.",
+   "notes": [],
+   "human": {
+    "source": "LabOS LSV benchmark, XMglass egocentric clip XM_07 (640 px mirror), steps 'Transfer 100 uL from tube 1 into tube 2' and 'from tube 2 into tube 3'",
+    "url": "https://huggingface.co/datasets/cong-lab/lsv/resolve/main/videos640/XM_07.mp4",
+    "dataset": "cong-lab/lsv",
+    "revision": "91eaf452d8ff2eeb1d5767d4198d1f6a965183c5",
+    "license": "CC-BY-NC-4.0 (research use only)",
+    "local_path": "human_videos/lsv_clips/XM_07.mp4",
+    "sha256": "b4c8ed3b61f2eafd06e460bd9da4bb0c25cfb8b67a9b0044cb3a77fa742a3d5a",
+    "resolution": [
+     854,
+     640
+    ],
+    "fps": 30.0,
+    "duration_s": 54.0,
+    "camera": "egocentric smart glasses, moving",
+    "trim_s": [
+     42.0,
+     54.0
+    ],
+    "phases_inferred_from_frames": [
+     {
+      "t": [
+       42.0,
+       45.0
+      ],
+      "phase": "aspirate from the first PCR tube of the strip (left hand holds the strip in its rack)"
+     },
+     {
+      "t": [
+       45.0,
+       48.0
+      ],
+      "phase": "dispense into the second tube"
+     },
+     {
+      "t": [
+       48.0,
+       51.0
+      ],
+      "phase": "aspirate from the second tube"
+     },
+     {
+      "t": [
+       51.0,
+       54.0
+      ],
+      "phase": "dispense into the third tube"
+     }
+    ],
+    "notes": "Window chosen from the dataset's per-step annotations (clips.parquet); phase times read off an 18-frame contact sheet."
+   },
+   "robot": "UR5e + Robotiq 2F-85 (MuJoCo Menagerie)",
+   "end_effector": "2f85",
+   "hand": null,
+   "slim_tips": false,
+   "cameras": {
+    "overview": {
+     "eye": [
+      0.4024,
+      1.0111,
+      0.5158
+     ],
+     "aim": [
+      -0.0639,
+      0.4282,
+      0.2826
+     ],
+     "fovy": 45.0
+    },
+    "closeup": {
+     "eye": [
+      -0.3418,
+      1.1429,
+      0.4812
+     ],
+     "aim": [
+      -0.0639,
+      0.4282,
+      0.2826
+     ],
+     "fovy": 45.0
+    }
+   },
+   "tags": [
+    "repeated insertion into small wells",
+    "sequential procedure"
+   ],
+   "assets": [
+    "pcr_plate",
+    "pipette",
+    "tip"
+   ],
+   "arms": 1,
+   "key": "serial-pcr-transfer",
+   "embodiment": "one arm, parallel jaw",
+   "run_id": "2026-10-09T144330_serial-pcr-transfer_main-c7c7819",
+   "code": "main-c7c7819",
+   "mode": "dynamic",
+   "sim_seconds": 19.5,
+   "max_tcp_error_m": 0.00111,
+   "max_penetration_m": 0.0,
+   "success": true,
+   "checks": [
+    {
+     "name": "tip_inside_plate_during_aspirate1",
+     "passed": true,
+     "measured": {
+      "max_xy_m": 0.00057,
+      "depth_m": [
+       0.00652,
+       0.00696
+      ]
+     },
+     "tolerance": {
+      "xy_m": 0.00443,
+      "depth_m": [
+       0.0,
+       0.010667999999999999
+      ]
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_inside_plate_during_dispense1",
+     "passed": true,
+     "measured": {
+      "max_xy_m": 0.00046,
+      "depth_m": [
+       0.00651,
+       0.00697
+      ]
+     },
+     "tolerance": {
+      "xy_m": 0.00443,
+      "depth_m": [
+       0.0,
+       0.010667999999999999
+      ]
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_inside_plate_during_aspirate2",
+     "passed": true,
+     "measured": {
+      "max_xy_m": 0.0004,
+      "depth_m": [
+       0.00651,
+       0.00696
+      ]
+     },
+     "tolerance": {
+      "xy_m": 0.00443,
+      "depth_m": [
+       0.0,
+       0.010667999999999999
+      ]
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_inside_plate_during_dispense2",
+     "passed": true,
+     "measured": {
+      "max_xy_m": 0.00046,
+      "depth_m": [
+       0.00651,
+       0.00697
+      ]
+     },
+     "tolerance": {
+      "xy_m": 0.00443,
+      "depth_m": [
+       0.0,
+       0.010667999999999999
+      ]
+     },
+     "privileged": true
+    },
+    {
+     "name": "no_unintended_contacts",
+     "passed": true,
+     "measured": {
+      "arm": [],
+      "gripper": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "max_penetration",
+     "passed": true,
+     "measured": {
+      "max_m": 0.0,
+      "phase": "to_src1",
+      "pairs": {}
+     },
+     "tolerance": {
+      "max_m": 0.001
+     },
+     "privileged": true
+    },
+    {
+     "name": "tcp_tracking",
+     "passed": true,
+     "measured": {
+      "max_m": 0.00111
+     },
+     "tolerance": {
+      "max_m": 0.01
+     },
+     "privileged": false
+    },
+    {
+     "name": "no_robot_self_contact",
+     "passed": true,
+     "measured": {
+      "pairs": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "arm_joints_within_limits",
+     "passed": true,
+     "measured": {
+      "max_excursion_rad": 0.0
+     },
+     "tolerance": {
+      "max_rad": 0.0
+     },
+     "privileged": false
+    }
+   ],
+   "human_video": "media/serial-pcr-transfer/human.mp4",
+   "robot_video": "media/serial-pcr-transfer/overview.mp4",
+   "closeup_video": "media/serial-pcr-transfer/closeup.mp4",
+   "genesis_video": "media/serial-pcr-transfer/genesis_overview.mp4",
+   "robot_poster": "media/serial-pcr-transfer/poster.jpg",
+   "review_sheet": null,
+   "sim2sim": {
+    "task": "serial-pcr-transfer",
+    "simulator": "genesis 1.4.3",
+    "gripper_kp": 20.0,
+    "substeps": 1,
+    "ticks_replayed": 975,
+    "ticks_total": 975,
+    "fraction_replayed": 1.0,
+    "emulated_equalities": [],
+    "camera": {
+     "eye": [
+      0.4024,
+      1.0111,
+      0.5158
+     ],
+     "aim": [
+      -0.0639,
+      0.4282,
+      0.2826
+     ],
+     "fovy": 45.0
+    },
+    "tracked_bodies": [
+     "pipette",
+     "tip"
+    ],
+    "final_divergence_m": {
+     "pipette": 0.01061,
+     "tip": 0.02119
+    },
+    "max_divergence_m": {
+     "pipette": 0.01236,
+     "tip": 0.02921
+    },
+    "max_penetration_m": 0.0,
+    "frames": 586
+   }
+  },
+  {
+   "id": "serial-pcr-transfer",
+   "title": "Serial transfer along a PCR strip",
+   "description": "repeated insertion into small wells / sequential procedure",
+   "goal": "Aspirate from tube 1 and dispense into tube 2, then from tube 2 into tube 3.",
+   "adaptation": "The hand-held PCR strip is a 96-well plate fixed to the bench; pipette pre-clamped with its tip on; actuated plunger; no liquid. Allegro hand instead of the parallel jaw: the fingers open and close through pinch postures solved in EigenDexplore's human hand-motion subspace, grasps squeeze a few millimetres past the object, no fingertip plates; where a task fills a rack, only tubes at least two wells from the target are placed (the 24 mm fingertips cannot enter a dense rack); the tool is held between thumb and index.",
+   "notes": [],
+   "human": {
+    "source": "LabOS LSV benchmark, XMglass egocentric clip XM_07 (640 px mirror), steps 'Transfer 100 uL from tube 1 into tube 2' and 'from tube 2 into tube 3'",
+    "url": "https://huggingface.co/datasets/cong-lab/lsv/resolve/main/videos640/XM_07.mp4",
+    "dataset": "cong-lab/lsv",
+    "revision": "91eaf452d8ff2eeb1d5767d4198d1f6a965183c5",
+    "license": "CC-BY-NC-4.0 (research use only)",
+    "local_path": "human_videos/lsv_clips/XM_07.mp4",
+    "sha256": "b4c8ed3b61f2eafd06e460bd9da4bb0c25cfb8b67a9b0044cb3a77fa742a3d5a",
+    "resolution": [
+     854,
+     640
+    ],
+    "fps": 30.0,
+    "duration_s": 54.0,
+    "camera": "egocentric smart glasses, moving",
+    "trim_s": [
+     42.0,
+     54.0
+    ],
+    "phases_inferred_from_frames": [
+     {
+      "t": [
+       42.0,
+       45.0
+      ],
+      "phase": "aspirate from the first PCR tube of the strip (left hand holds the strip in its rack)"
+     },
+     {
+      "t": [
+       45.0,
+       48.0
+      ],
+      "phase": "dispense into the second tube"
+     },
+     {
+      "t": [
+       48.0,
+       51.0
+      ],
+      "phase": "aspirate from the second tube"
+     },
+     {
+      "t": [
+       51.0,
+       54.0
+      ],
+      "phase": "dispense into the third tube"
+     }
+    ],
+    "notes": "Window chosen from the dataset's per-step annotations (clips.parquet); phase times read off an 18-frame contact sheet."
+   },
+   "robot": "UR5e + Wonik Allegro hand (MuJoCo Menagerie)",
+   "end_effector": "allegro",
+   "hand": {
+    "basis": "eigendexplore allegro PCA, rank 10",
+    "commit": "292693385afdfe054c6388d93513083235d50271",
+    "family_widths_m": [
+     0.0,
+     0.0083,
+     0.0167,
+     0.025,
+     0.0333,
+     0.0417,
+     0.05
+    ],
+    "closed_coefficients": [
+     1.0618,
+     0.151,
+     -0.289,
+     0.0748,
+     -0.0163,
+     -0.0812,
+     -0.0801,
+     -0.0256,
+     -0.1658,
+     0.0225
+    ],
+    "open_coefficients": [
+     0.7468,
+     -0.5299,
+     -0.1478,
+     -0.089,
+     -0.7075,
+     0.1565,
+     -0.3536,
+     0.3618,
+     0.0578,
+     0.7525
+    ],
+    "max_pinch_gap_m": 0.0485,
+    "pinch_point_palm_m": [
+     0.0891,
+     0.0235,
+     0.0166
+    ],
+    "closing_axis_palm": [
+     0.5761,
+     -0.0483,
+     0.8159
+    ],
+    "approach_tilt_deg": 45.0,
+    "kp": 10.0,
+    "torque_limit": 0.7
+   },
+   "slim_tips": false,
+   "cameras": {
+    "overview": {
+     "eye": [
+      0.5155,
+      1.1524,
+      0.6373
+     ],
+     "aim": [
+      -0.0639,
+      0.4282,
+      0.3476
+     ],
+     "fovy": 45.0
+    },
+    "closeup": {
+     "eye": [
+      -0.4081,
+      1.3134,
+      0.5935
+     ],
+     "aim": [
+      -0.0639,
+      0.4282,
+      0.3476
+     ],
+     "fovy": 45.0
+    }
+   },
+   "tags": [
+    "repeated insertion into small wells",
+    "sequential procedure"
+   ],
+   "assets": [
+    "pcr_plate",
+    "pipette",
+    "tip"
+   ],
+   "arms": 1,
+   "key": "serial-pcr-transfer@allegro",
+   "embodiment": "one arm, Allegro hand",
+   "run_id": "2026-10-09T153719_serial-pcr-transfer-allegro_main-8ea196b",
+   "code": "main-8ea196b",
+   "mode": "dynamic",
+   "sim_seconds": 19.5,
+   "max_tcp_error_m": 0.00118,
+   "max_penetration_m": 0.0,
+   "success": true,
+   "checks": [
+    {
+     "name": "tip_inside_plate_during_aspirate1",
+     "passed": true,
+     "measured": {
+      "max_xy_m": 0.00082,
+      "depth_m": [
+       0.00645,
+       0.00685
+      ]
+     },
+     "tolerance": {
+      "xy_m": 0.00443,
+      "depth_m": [
+       0.0,
+       0.010667999999999999
+      ]
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_inside_plate_during_dispense1",
+     "passed": true,
+     "measured": {
+      "max_xy_m": 0.00091,
+      "depth_m": [
+       0.00645,
+       0.00686
+      ]
+     },
+     "tolerance": {
+      "xy_m": 0.00443,
+      "depth_m": [
+       0.0,
+       0.010667999999999999
+      ]
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_inside_plate_during_aspirate2",
+     "passed": true,
+     "measured": {
+      "max_xy_m": 0.00083,
+      "depth_m": [
+       0.00645,
+       0.00684
+      ]
+     },
+     "tolerance": {
+      "xy_m": 0.00443,
+      "depth_m": [
+       0.0,
+       0.010667999999999999
+      ]
+     },
+     "privileged": true
+    },
+    {
+     "name": "tip_inside_plate_during_dispense2",
+     "passed": true,
+     "measured": {
+      "max_xy_m": 0.00093,
+      "depth_m": [
+       0.00644,
+       0.00684
+      ]
+     },
+     "tolerance": {
+      "xy_m": 0.00443,
+      "depth_m": [
+       0.0,
+       0.010667999999999999
+      ]
+     },
+     "privileged": true
+    },
+    {
+     "name": "no_unintended_contacts",
+     "passed": true,
+     "measured": {
+      "arm": [],
+      "gripper": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "max_penetration",
+     "passed": true,
+     "measured": {
+      "max_m": 0.0,
+      "phase": "to_src1",
+      "pairs": {}
+     },
+     "tolerance": {
+      "max_m": 0.001
+     },
+     "privileged": true
+    },
+    {
+     "name": "tcp_tracking",
+     "passed": true,
+     "measured": {
+      "max_m": 0.00118
+     },
+     "tolerance": {
+      "max_m": 0.01
+     },
+     "privileged": false
+    },
+    {
+     "name": "no_robot_self_contact",
+     "passed": true,
+     "measured": {
+      "pairs": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "arm_joints_within_limits",
+     "passed": true,
+     "measured": {
+      "max_excursion_rad": 0.0
+     },
+     "tolerance": {
+      "max_rad": 0.0
+     },
+     "privileged": false
+    }
+   ],
+   "human_video": "media/serial-pcr-transfer-allegro/human.mp4",
+   "robot_video": "media/serial-pcr-transfer-allegro/overview.mp4",
+   "closeup_video": "media/serial-pcr-transfer-allegro/closeup.mp4",
+   "genesis_video": "media/serial-pcr-transfer-allegro/genesis_overview.mp4",
+   "robot_poster": "media/serial-pcr-transfer-allegro/poster.jpg",
+   "review_sheet": null,
+   "sim2sim": {
+    "task": "serial-pcr-transfer",
+    "simulator": "genesis 1.4.3",
+    "gripper_kp": 20.0,
+    "substeps": 1,
+    "ticks_replayed": 975,
+    "ticks_total": 975,
+    "fraction_replayed": 1.0,
+    "emulated_equalities": [],
+    "camera": {
+     "eye": [
+      0.5155,
+      1.1524,
+      0.6373
+     ],
+     "aim": [
+      -0.0639,
+      0.4282,
+      0.3476
+     ],
+     "fovy": 45.0
+    },
+    "tracked_bodies": [
+     "pipette",
+     "tip"
+    ],
+    "final_divergence_m": {
+     "pipette": 0.00985,
+     "tip": 0.02146
+    },
+    "max_divergence_m": {
+     "pipette": 0.01103,
+     "tip": 0.02911
+    },
+    "max_penetration_m": 0.0,
+    "frames": 586
+   }
+  },
+  {
+   "id": "tube-between-racks",
+   "title": "Move a tube from a full rack to another rack",
+   "description": "grasping among close neighbours / placing into a fixture",
+   "goal": "Lift one capped tube out of the full rack and seat it in an empty well of the second rack.",
+   "adaptation": "Low-profile racks; the off-camera destination is a second rack to the right; the other tubes of the full rack are static but collidable; the jaw wears slim fingertip plates and pinches the cap so the stock pads stay above the neighbours; fingertip plates to reach between neighbouring caps.",
+   "notes": [],
+   "human": {
+    "source": "LabOS LSV benchmark, DJI third-person clip DJI_U19 'Moving EP tube' (640 px mirror)",
+    "url": "https://huggingface.co/datasets/cong-lab/lsv/resolve/main/videos640/DJI_U19.mp4",
+    "dataset": "cong-lab/lsv",
+    "revision": "91eaf452d8ff2eeb1d5767d4198d1f6a965183c5",
+    "license": "CC-BY-NC-4.0 (research use only)",
+    "local_path": "human_videos/lsv_clips/DJI_U19.mp4",
+    "sha256": "20e713e9f4f65b1316d5589abdf1e1124f0dd7fd38071a441dc10c5313c19a4e",
+    "resolution": [
+     854,
+     640
+    ],
+    "fps": 29.97,
+    "duration_s": 7.0,
+    "camera": "fixed third-person, bench level",
+    "trim_s": [
+     0.0,
+     7.0
+    ],
+    "phases_inferred_from_frames": [
+     {
+      "t": [
+       0.0,
+       1.5
+      ],
+      "phase": "take a tube out of the full rack"
+     },
+     {
+      "t": [
+       1.5,
+       4.0
+      ],
+      "phase": "carry it to the right, out of frame"
+     },
+     {
+      "t": [
+       4.0,
+       7.0
+      ],
+      "phase": "return with the empty hand"
+     }
+    ],
+    "notes": "The destination is off camera; the simulation places the tube in a second rack to the right (adaptation)."
+   },
+   "robot": "UR5e + Robotiq 2F-85 (MuJoCo Menagerie)",
+   "end_effector": "2f85",
+   "hand": null,
+   "slim_tips": true,
+   "cameras": {
+    "overview": {
+     "eye": [
+      0.3033,
+      0.9461,
+      0.451
+     ],
+     "aim": [
+      -0.082,
+      0.4644,
+      0.2584
+     ],
+     "fovy": 45.0
+    },
+    "closeup": {
+     "eye": [
+      -0.307,
+      1.043,
+      0.4191
+     ],
+     "aim": [
+      -0.082,
+      0.4644,
+      0.2584
+     ],
+     "fovy": 45.0
+    }
+   },
+   "tags": [
+    "grasping among close neighbours",
+    "placing into a fixture"
+   ],
+   "assets": [
+    "tube",
+    "tuberack"
+   ],
+   "arms": 1,
+   "key": "tube-between-racks",
+   "embodiment": "one arm, parallel jaw",
+   "run_id": "2026-10-09T144029_tube-between-racks_main-c7c7819",
+   "code": "main-c7c7819",
+   "mode": "dynamic",
+   "sim_seconds": 12.7,
+   "max_tcp_error_m": 0.00149,
+   "max_penetration_m": 0.000242,
+   "success": true,
+   "checks": [
+    {
+     "name": "tube_lifted",
+     "passed": true,
+     "measured": {
+      "rise_m": 0.10071
+     },
+     "tolerance": {
+      "min_m": 0.05
+     },
+     "privileged": true
+    },
+    {
+     "name": "tube_held_by_pads",
+     "passed": true,
+     "measured": {
+      "fraction_in_contact": 1.0
+     },
+     "tolerance": {
+      "min": 0.95
+     },
+     "privileged": true
+    },
+    {
+     "name": "tube_placed_in_destination_well",
+     "passed": true,
+     "measured": {
+      "xy_m": 0.00011,
+      "dz_m": 0.0
+     },
+     "tolerance": {
+      "xy_m": 0.0025,
+      "z_m": 0.003
+     },
+     "privileged": true
+    },
+    {
+     "name": "no_unintended_contacts",
+     "passed": true,
+     "measured": {
+      "arm": [],
+      "gripper": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "max_penetration",
+     "passed": true,
+     "measured": {
+      "max_m": 0.000242,
+      "phase": "lift",
+      "pairs": {}
+     },
+     "tolerance": {
+      "max_m": 0.001
+     },
+     "privileged": true
+    },
+    {
+     "name": "tcp_tracking",
+     "passed": true,
+     "measured": {
+      "max_m": 0.00149
+     },
+     "tolerance": {
+      "max_m": 0.01
+     },
+     "privileged": false
+    },
+    {
+     "name": "no_robot_self_contact",
+     "passed": true,
+     "measured": {
+      "pairs": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "arm_joints_within_limits",
+     "passed": true,
+     "measured": {
+      "max_excursion_rad": 0.0
+     },
+     "tolerance": {
+      "max_rad": 0.0
+     },
+     "privileged": false
+    }
+   ],
+   "human_video": "media/tube-between-racks/human.mp4",
+   "robot_video": "media/tube-between-racks/overview.mp4",
+   "closeup_video": "media/tube-between-racks/closeup.mp4",
+   "genesis_video": "media/tube-between-racks/genesis_overview.mp4",
+   "robot_poster": "media/tube-between-racks/poster.jpg",
+   "review_sheet": null,
+   "sim2sim": {
+    "task": "tube-between-racks",
+    "simulator": "genesis 1.4.3",
+    "gripper_kp": 20.0,
+    "substeps": 1,
+    "ticks_replayed": 635,
+    "ticks_total": 635,
+    "fraction_replayed": 1.0,
+    "emulated_equalities": [],
+    "camera": {
+     "eye": [
+      0.3033,
+      0.9461,
+      0.451
+     ],
+     "aim": [
+      -0.082,
+      0.4644,
+      0.2584
+     ],
+     "fovy": 45.0
+    },
+    "tracked_bodies": [
+     "tube_B4"
+    ],
+    "final_divergence_m": {
+     "tube_B4": 0.28193
+    },
+    "max_divergence_m": {
+     "tube_B4": 0.29819
+    },
+    "max_penetration_m": 0.014125,
+    "frames": 382
+   }
+  },
+  {
+   "id": "tube-inspect",
+   "title": "Hold a tube up to inspect it and put it back",
+   "description": "grasping small cylindrical objects / reorientation in hand",
+   "goal": "Lift a capped 1.5 mL tube out of its rack, hold it up tilted towards the camera, return it to the same well.",
+   "adaptation": "Low-profile rack and slim fingertip plates so the jaw reaches the tube among its neighbours; the tilt is a wrist rotation of 40 degrees; rack pick and return are inferred (the clip shows only the carry).",
+   "notes": [],
+   "human": {
+    "source": "LabOS LSV benchmark, DJI third-person clip DJI_U18 'Moving EP tube' (640 px mirror)",
+    "url": "https://huggingface.co/datasets/cong-lab/lsv/resolve/main/videos640/DJI_U18.mp4",
+    "dataset": "cong-lab/lsv",
+    "revision": "91eaf452d8ff2eeb1d5767d4198d1f6a965183c5",
+    "license": "CC-BY-NC-4.0 (research use only)",
+    "local_path": "human_videos/lsv_clips/DJI_U18.mp4",
+    "sha256": "ac7a80b7050889511d0511618ae78c6ade8c77a9fbe7364595d4265284515bbf",
+    "resolution": [
+     854,
+     640
+    ],
+    "fps": 29.97,
+    "duration_s": 5.6,
+    "camera": "fixed third-person, bench level",
+    "trim_s": [
+     0.0,
+     5.6
+    ],
+    "phases_inferred_from_frames": [
+     {
+      "t": [
+       0.0,
+       1.5
+      ],
+      "phase": "bring a 1.5 mL tube from the rack towards the camera"
+     },
+     {
+      "t": [
+       1.5,
+       4.5
+      ],
+      "phase": "hold the tube up, tilted, and look at its contents"
+     },
+     {
+      "t": [
+       4.5,
+       5.6
+      ],
+      "phase": "lower the tube again"
+     }
+    ],
+    "notes": "The clip shows only the carry and inspection; the rack pick and return are inferred from the dataset's operation label 'Moving EP tube'."
+   },
+   "robot": "UR5e + Robotiq 2F-85 (MuJoCo Menagerie)",
+   "end_effector": "2f85",
+   "hand": null,
+   "slim_tips": true,
+   "cameras": {
+    "overview": {
+     "eye": [
+      0.336,
+      1.0105,
+      0.4474
+     ],
+     "aim": [
+      -0.042,
+      0.5381,
+      0.2584
+     ],
+     "fovy": 45.0
+    },
+    "closeup": {
+     "eye": [
+      -0.2621,
+      1.1039,
+      0.4156
+     ],
+     "aim": [
+      -0.042,
+      0.5381,
+      0.2584
+     ],
+     "fovy": 45.0
+    }
+   },
+   "tags": [
+    "grasping small cylindrical objects",
+    "reorientation in hand"
+   ],
+   "assets": [
+    "tube",
+    "tuberack"
+   ],
+   "arms": 1,
+   "key": "tube-inspect",
+   "embodiment": "one arm, parallel jaw",
+   "run_id": "2026-10-09T144331_tube-inspect_main-c7c7819",
+   "code": "main-c7c7819",
+   "mode": "dynamic",
+   "sim_seconds": 17.7,
+   "max_tcp_error_m": 0.00172,
+   "max_penetration_m": 0.000214,
+   "success": true,
+   "checks": [
+    {
+     "name": "tube_lifted",
+     "passed": true,
+     "measured": {
+      "rise_m": 0.10064
+     },
+     "tolerance": {
+      "min_m": 0.05
+     },
+     "privileged": true
+    },
+    {
+     "name": "tube_tilted_while_held",
+     "passed": true,
+     "measured": {
+      "tilt_deg": 38.91
+     },
+     "tolerance": {
+      "deg": [
+       35.0,
+       45.0
+      ]
+     },
+     "privileged": true
+    },
+    {
+     "name": "tube_held_by_pads",
+     "passed": true,
+     "measured": {
+      "fraction_in_contact": 1.0
+     },
+     "tolerance": {
+      "min": 0.95
+     },
+     "privileged": true
+    },
+    {
+     "name": "tube_returned_to_well",
+     "passed": true,
+     "measured": {
+      "xy_m": 0.00108,
+      "dz_m": 0.0
+     },
+     "tolerance": {
+      "xy_m": 0.0025,
+      "z_m": 0.003
+     },
+     "privileged": true
+    },
+    {
+     "name": "no_unintended_contacts",
+     "passed": true,
+     "measured": {
+      "arm": [],
+      "gripper": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "max_penetration",
+     "passed": true,
+     "measured": {
+      "max_m": 0.000214,
+      "phase": "lift",
+      "pairs": {}
+     },
+     "tolerance": {
+      "max_m": 0.001
+     },
+     "privileged": true
+    },
+    {
+     "name": "tcp_tracking",
+     "passed": true,
+     "measured": {
+      "max_m": 0.00172
+     },
+     "tolerance": {
+      "max_m": 0.01
+     },
+     "privileged": false
+    },
+    {
+     "name": "no_robot_self_contact",
+     "passed": true,
+     "measured": {
+      "pairs": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "arm_joints_within_limits",
+     "passed": true,
+     "measured": {
+      "max_excursion_rad": 0.0
+     },
+     "tolerance": {
+      "max_rad": 0.0
+     },
+     "privileged": false
+    }
+   ],
+   "human_video": "media/tube-inspect/human.mp4",
+   "robot_video": "media/tube-inspect/overview.mp4",
+   "closeup_video": "media/tube-inspect/closeup.mp4",
+   "genesis_video": "media/tube-inspect/genesis_overview.mp4",
+   "robot_poster": "media/tube-inspect/poster.jpg",
+   "review_sheet": null,
+   "sim2sim": {
+    "task": "tube-inspect",
+    "simulator": "genesis 1.4.3",
+    "gripper_kp": 20.0,
+    "substeps": 1,
+    "ticks_replayed": 885,
+    "ticks_total": 885,
+    "fraction_replayed": 1.0,
+    "emulated_equalities": [],
+    "camera": {
+     "eye": [
+      0.336,
+      1.0105,
+      0.4474
+     ],
+     "aim": [
+      -0.042,
+      0.5381,
+      0.2584
+     ],
+     "fovy": 45.0
+    },
+    "tracked_bodies": [
+     "tube_B3"
+    ],
+    "final_divergence_m": {
+     "tube_B3": 0.01557
+    },
+    "max_divergence_m": {
+     "tube_B3": 0.33294
+    },
+    "max_penetration_m": 0.011022,
+    "frames": 532
+   }
+  },
+  {
+   "id": "tube-to-vortexer",
+   "title": "Vortex a tube and return it to the rack",
+   "description": "grasping small cylindrical objects / placing into a fixture",
+   "goal": "Lift a capped 1.5 mL tube out of its rack, hold it on the vortex mixer cup, and put it back into the same well.",
+   "adaptation": "Low-profile tube rack (walls 12 mm above the well floor) and slim fingertip plates on the jaw so it reaches the tube body; the mixer's agitation is a scripted 3 mm circular wiggle of the held tube; the mixer has no switch.",
+   "notes": [],
+   "human": {
+    "source": "LabOS real human vortexing (anonymized), front camera, first video file",
+    "url": "https://huggingface.co/datasets/labos-sim/real_human_vortexing_lerobot_anonymized/resolve/main/videos/observation.images.front/chunk-000/file-000.mp4",
+    "dataset": "labos-sim/real_human_vortexing_lerobot_anonymized",
+    "revision": "main (2026-10-09; LeRobot v3.0 file holds several concatenated episodes)",
+    "license": "not stated on the dataset card ('[More Information Needed]'); not redistributed here",
+    "local_path": "human_videos/labos_vortexing/front_file-000.mp4",
+    "sha256": "d6f6453de4632a1d5cbba45297c9d42421dfe0f56d5ccb153731187eed639715",
+    "resolution": [
+     1920,
+     1200
+    ],
+    "fps": 30.0,
+    "duration_s": 14.3,
+    "camera": "fixed overhead front camera",
+    "trim_s": [
+     2.0,
+     9.5
+    ],
+    "phases_inferred_from_frames": [
+     {
+      "t": [
+       2.5,
+       4.3
+      ],
+      "phase": "reach to the tube rack and take a tube"
+     },
+     {
+      "t": [
+       4.3,
+       6.8
+      ],
+      "phase": "press the tube on the vortex mixer"
+     },
+     {
+      "t": [
+       6.8,
+       8.7
+      ],
+      "phase": "return the tube to the rack and withdraw"
+     }
+    ],
+    "notes": "Phase times were read off a 24-frame contact sheet; the file contains several episodes, the first is used."
+   },
+   "robot": "UR5e + Robotiq 2F-85 (MuJoCo Menagerie)",
+   "end_effector": "2f85",
+   "hand": null,
+   "slim_tips": true,
+   "cameras": {
+    "overview": {
+     "eye": [
+      0.4076,
+      0.9599,
+      0.4527
+     ],
+     "aim": [
+      0.019,
+      0.4741,
+      0.2584
+     ],
+     "fovy": 45.0
+    },
+    "closeup": {
+     "eye": [
+      -0.2087,
+      1.0596,
+      0.421
+     ],
+     "aim": [
+      0.019,
+      0.4741,
+      0.2584
+     ],
+     "fovy": 45.0
+    }
+   },
+   "tags": [
+    "grasping small cylindrical objects",
+    "placing into a fixture"
+   ],
+   "assets": [
+    "tube",
+    "tuberack",
+    "vortexer"
+   ],
+   "arms": 1,
+   "key": "tube-to-vortexer",
+   "embodiment": "one arm, parallel jaw",
+   "run_id": "2026-10-09T143623_tube-to-vortexer_main-c7c7819",
+   "code": "main-c7c7819",
+   "mode": "dynamic",
+   "sim_seconds": 18.0,
+   "max_tcp_error_m": 0.00195,
+   "max_penetration_m": 0.00029,
+   "success": true,
+   "checks": [
+    {
+     "name": "tube_lifted",
+     "passed": true,
+     "measured": {
+      "rise_m": 0.10064
+     },
+     "tolerance": {
+      "min_m": 0.05
+     },
+     "privileged": true
+    },
+    {
+     "name": "tube_on_vortexer",
+     "passed": true,
+     "measured": {
+      "max_gap_m": 0.00239
+     },
+     "tolerance": {
+      "max_m": 0.008
+     },
+     "privileged": true
+    },
+    {
+     "name": "tube_returned_to_well",
+     "passed": true,
+     "measured": {
+      "xy_m": 0.00074,
+      "dz_m": 0.0
+     },
+     "tolerance": {
+      "xy_m": 0.0025,
+      "z_m": 0.003
+     },
+     "privileged": true
+    },
+    {
+     "name": "tube_held_by_pads",
+     "passed": true,
+     "measured": {
+      "fraction_in_contact": 1.0
+     },
+     "tolerance": {
+      "min": 0.95
+     },
+     "privileged": true
+    },
+    {
+     "name": "no_unintended_contacts",
+     "passed": true,
+     "measured": {
+      "arm": [],
+      "gripper": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "max_penetration",
+     "passed": true,
+     "measured": {
+      "max_m": 0.00029,
+      "phase": "vortex",
+      "pairs": {}
+     },
+     "tolerance": {
+      "max_m": 0.001
+     },
+     "privileged": true
+    },
+    {
+     "name": "tcp_tracking",
+     "passed": true,
+     "measured": {
+      "max_m": 0.00195
+     },
+     "tolerance": {
+      "max_m": 0.01
+     },
+     "privileged": false
+    },
+    {
+     "name": "no_robot_self_contact",
+     "passed": true,
+     "measured": {
+      "pairs": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "arm_joints_within_limits",
+     "passed": true,
+     "measured": {
+      "max_excursion_rad": 0.0
+     },
+     "tolerance": {
+      "max_rad": 0.0
+     },
+     "privileged": false
+    }
+   ],
+   "human_video": "media/tube-to-vortexer/human.mp4",
+   "robot_video": "media/tube-to-vortexer/overview.mp4",
+   "closeup_video": "media/tube-to-vortexer/closeup.mp4",
+   "genesis_video": "media/tube-to-vortexer/genesis_overview.mp4",
+   "robot_poster": "media/tube-to-vortexer/poster.jpg",
+   "review_sheet": null,
+   "sim2sim": {
+    "task": "tube-to-vortexer",
+    "simulator": "genesis 1.4.3",
+    "gripper_kp": 20.0,
+    "substeps": 1,
+    "ticks_replayed": 900,
+    "ticks_total": 900,
+    "fraction_replayed": 1.0,
+    "emulated_equalities": [],
+    "camera": {
+     "eye": [
+      0.4076,
+      0.9599,
+      0.4527
+     ],
+     "aim": [
+      0.019,
+      0.4741,
+      0.2584
+     ],
+     "fovy": 45.0
+    },
+    "tracked_bodies": [
+     "tube_B3"
+    ],
+    "final_divergence_m": {
+     "tube_B3": 0.01855
+    },
+    "max_divergence_m": {
+     "tube_B3": 0.29275
+    },
+    "max_penetration_m": 0.016359,
+    "frames": 541
+   }
+  },
+  {
+   "id": "tube-uncap-bimanual",
+   "title": "Unscrew and re-screw a 50 mL tube cap with two arms",
+   "description": "bimanual / screwing / regrasp-free wrist rotation",
+   "goal": "One arm steadies the tube in its rack; the other grips the cap, unscrews it one turn, lifts it off, lowers it and screws it back.",
+   "adaptation": "Two UR5e arms replace two hands; the tube stays in a low-profile rack instead of being lifted from a tray; the thread is a one-turn lock (no lead) that disengages when unscrewed and re-engages when the cap is lowered; the wrist turns a full revolution without regrasping.",
+   "notes": [],
+   "human": {
+    "source": "CyberOrigin 'twist_the_tube' human demonstration with motion capture",
+    "url": "https://huggingface.co/datasets/cyberorigin/twist_the_tube/resolve/main/Video/video.mp4",
+    "dataset": "cyberorigin/twist_the_tube",
+    "revision": "main (2026-10-09)",
+    "license": "MIT",
+    "local_path": "human_videos/cyberorigin_twist/video.mp4",
+    "sha256": "5a00a3108ba51f32cbccddfe198f5dd64b45b9bb0a9eb56cf93782fa16a828e3",
+    "resolution": [
+     1280,
+     800
+    ],
+    "fps": 30.0,
+    "duration_s": 12.2,
+    "camera": "head-mounted, moving",
+    "trim_s": [
+     0.0,
+     12.2
+    ],
+    "phases_inferred_from_frames": [
+     {
+      "t": [
+       0.0,
+       3.0
+      ],
+      "phase": "pick the 50 mL tube up from the tray with both hands"
+     },
+     {
+      "t": [
+       3.0,
+       9.0
+      ],
+      "phase": "hold the tube in one hand and twist the cap off and on with the other"
+     },
+     {
+      "t": [
+       9.0,
+       12.2
+      ],
+      "phase": "put the tube back in the tray"
+     }
+    ],
+    "notes": "The repository README is front matter only; the content was read off frames. Two arms: one holds the tube in its rack, the other unscrews the cap one turn, lifts it, lowers it and screws it back."
+   },
+   "robot": "2x UR5e + Robotiq 2F-85 (MuJoCo Menagerie)",
+   "end_effector": "2f85",
+   "hand": null,
+   "slim_tips": false,
+   "cameras": {
+    "overview": {
+     "eye": [
+      0.5864,
+      1.0328,
+      0.4774
+     ],
+     "aim": [
+      0.141,
+      0.4761,
+      0.2548
+     ],
+     "fovy": 45.0
+    },
+    "closeup": {
+     "eye": [
+      -0.1226,
+      1.154,
+      0.4431
+     ],
+     "aim": [
+      0.141,
+      0.4761,
+      0.2548
+     ],
+     "fovy": 45.0
+    }
+   },
+   "tags": [
+    "bimanual",
+    "screwing",
+    "regrasp-free wrist rotation"
+   ],
+   "assets": [
+    "tube",
+    "tuberack"
+   ],
+   "arms": 2,
+   "key": "tube-uncap-bimanual",
+   "embodiment": "two arms, parallel jaw",
+   "run_id": "2026-10-09T144029_tube-uncap-bimanual_main-c7c7819",
+   "code": "main-c7c7819",
+   "mode": "dynamic",
+   "sim_seconds": 23.8,
+   "max_tcp_error_m": 0.00195,
+   "max_penetration_m": 9.6e-05,
+   "success": true,
+   "checks": [
+    {
+     "name": "cap_unscrewed_one_turn",
+     "passed": true,
+     "measured": {
+      "turn_rad": 6.2891
+     },
+     "tolerance": {
+      "min_rad": 5.934119456780721
+     },
+     "privileged": true
+    },
+    {
+     "name": "cap_rethreaded",
+     "passed": true,
+     "measured": {
+      "rise_m": -0.00037
+     },
+     "tolerance": {
+      "rise_m": [
+       -0.0015,
+       0.0015
+      ]
+     },
+     "privileged": true
+    },
+    {
+     "name": "cap_lifted_off",
+     "passed": true,
+     "measured": {
+      "min_lift_m": 0.02985
+     },
+     "tolerance": {
+      "min_m": 0.015
+     },
+     "privileged": true
+    },
+    {
+     "name": "cap_screwed_back",
+     "passed": true,
+     "measured": {
+      "turn_rad": -0.007
+     },
+     "tolerance": {
+      "max_rad": 0.4363323129985824
+     },
+     "privileged": true
+    },
+    {
+     "name": "tube_stays_in_rack",
+     "passed": true,
+     "measured": {
+      "xy_m": 0.00045,
+      "dz_m": 0.0
+     },
+     "tolerance": {
+      "xy_m": 0.003,
+      "z_m": 0.003
+     },
+     "privileged": true
+    },
+    {
+     "name": "cap_held_by_twisting_jaw",
+     "passed": true,
+     "measured": {
+      "fraction": 1.0
+     },
+     "tolerance": {
+      "min": 0.95
+     },
+     "privileged": true
+    },
+    {
+     "name": "tube_held_by_holding_jaw",
+     "passed": true,
+     "measured": {
+      "fraction": 1.0
+     },
+     "tolerance": {
+      "min": 0.95
+     },
+     "privileged": true
+    },
+    {
+     "name": "no_unintended_contacts",
+     "passed": true,
+     "measured": {
+      "arm": [],
+      "gripper": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "max_penetration",
+     "passed": true,
+     "measured": {
+      "max_m": 9.6e-05,
+      "phase": "cap_lift",
+      "pairs": {}
+     },
+     "tolerance": {
+      "max_m": 0.001
+     },
+     "privileged": true
+    },
+    {
+     "name": "tcp_tracking",
+     "passed": true,
+     "measured": {
+      "max_m": 0.00195
+     },
+     "tolerance": {
+      "max_m": 0.01
+     },
+     "privileged": false
+    },
+    {
+     "name": "no_robot_self_contact",
+     "passed": true,
+     "measured": {
+      "pairs": []
+     },
+     "tolerance": {},
+     "privileged": true
+    },
+    {
+     "name": "arm_joints_within_limits",
+     "passed": true,
+     "measured": {
+      "max_excursion_rad": 0.0
+     },
+     "tolerance": {
+      "max_rad": 0.0
+     },
+     "privileged": false
+    }
+   ],
+   "human_video": "media/tube-uncap-bimanual/human.mp4",
+   "robot_video": "media/tube-uncap-bimanual/overview.mp4",
+   "closeup_video": "media/tube-uncap-bimanual/closeup.mp4",
+   "genesis_video": "media/tube-uncap-bimanual/genesis_overview.mp4",
+   "robot_poster": "media/tube-uncap-bimanual/poster.jpg",
+   "review_sheet": null,
+   "sim2sim": {
+    "task": "tube-uncap-bimanual",
+    "simulator": "genesis 1.4.3",
+    "gripper_kp": 20.0,
+    "substeps": 1,
+    "ticks_replayed": 1190,
+    "ticks_total": 1190,
+    "fraction_replayed": 1.0,
+    "emulated_equalities": [
+     {
+      "joint": "cap/rise",
+      "locked_at": 0.0,
+      "index": 6,
+      "name": "thread",
+      "kind": "joint"
+     }
+    ],
+    "camera": {
+     "eye": [
+      0.5864,
+      1.0328,
+      0.4774
+     ],
+     "aim": [
+      0.141,
+      0.4761,
+      0.2548
+     ],
+     "fovy": 45.0
+    },
+    "tracked_bodies": [
+     "tube",
+     "cap"
+    ],
+    "final_divergence_m": {
+     "tube": 0.00085,
+     "cap": 0.00089
+    },
+    "max_divergence_m": {
+     "tube": 0.0299,
+     "cap": 0.01748
+    },
+    "max_penetration_m": 0.000289,
+    "frames": 715
+   }
+  }
+ ],
+ "assets": [
+  {
+   "id": "bottle",
+   "label": "reagent bottle",
+   "image": "assets/bottle.png",
+   "from_task": "bottle-to-tube"
+  },
+  {
+   "id": "cassette",
+   "label": "flat cassette",
+   "image": "assets/cassette.png",
+   "from_task": "cassette-into-base"
+  },
+  {
+   "id": "cassette_base",
+   "label": "cassette base with rails",
+   "image": "assets/cassette_base.png",
+   "from_task": "cassette-into-base"
+  },
+  {
+   "id": "pcr_plate",
+   "label": "96-well PCR plate (Opentrons definition)",
+   "image": "assets/pcr_plate.png",
+   "from_task": "serial-pcr-transfer"
+  },
+  {
+   "id": "pipette",
+   "label": "single-channel pipette (parametric, actuated plunger)",
+   "image": "assets/pipette.png",
+   "from_task": "bottle-to-tube"
+  },
+  {
+   "id": "stand",
+   "label": "single-slot pipette stand",
+   "image": "assets/stand.png",
+   "from_task": "bottle-to-tube"
+  },
+  {
+   "id": "tip",
+   "label": "300 uL pipette tip",
+   "image": "assets/tip.png",
+   "from_task": "bottle-to-tube"
+  },
+  {
+   "id": "tiprack",
+   "label": "96-tip rack (Opentrons 300 uL definition)",
+   "image": "assets/tiprack.png",
+   "from_task": "bottle-to-tube"
+  },
+  {
+   "id": "tube",
+   "label": "1.5 mL microcentrifuge tube",
+   "image": "assets/tube.png",
+   "from_task": "bottle-to-tube"
+  },
+  {
+   "id": "tuberack",
+   "label": "24-tube rack (Opentrons definition)",
+   "image": "assets/tuberack.png",
+   "from_task": "bottle-to-tube"
+  },
+  {
+   "id": "vortexer",
+   "label": "vortex mixer",
+   "image": "assets/vortexer.png",
+   "from_task": "tube-to-vortexer"
+  },
+  {
+   "id": "waste_cup",
+   "label": "waste cup",
+   "image": "assets/waste_cup.png",
+   "from_task": "bottle-to-tube"
+  }
+ ],
+ "attempted": 16
+}
